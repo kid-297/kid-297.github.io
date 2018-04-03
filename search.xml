@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[设计模式GOF23--工厂模式]]></title>
+    <url>%2F2018%2F04%2F02%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[工厂模式：实现了创建者和调用者的分离 详细分类： 简单工厂模式 虽然某种程度不符合设计原则，但实际使用最多 工厂方法模式 不修改已有类的前提下，通过增加新的工厂类实现扩展。 抽象工厂模式 不可以增加产品。可以增加产品族。 应用场景 JDK中Calendar的getInstance方法 JDBC中Connection对象的获取 Hibernate中SessionFactory创建Session Spring中IOC容器创建管理bean对象 XML解析时DocumentBuilderFactory创建解析器对象 反射中Class对象的newInstance(); 面向对象的设计原则 OCP(开闭原则)：一个软件的实体应当对扩展开放，对修改关闭 DIP(依赖倒转原则)：要针对接口编程，不要针对现实编程 LOD(迪迷特法则)：只与你直接的朋友通信，而避免与陌生人通信 普通方法按照常理模式，当我们需要调用一个类的时候，我们需要通过new 一个对象来实现。那么，我在不知道工厂模式的情况下，多半是直接new，然后直接调用了。在此我就叫我的方法为普通方法。1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * 定义Car接口 */public interface Car &#123; void run();&#125;/** * 实现Car接口 * 比亚迪 */public class Byd implements Car&#123; @Override public void run() &#123; System.out.println("比亚迪在跑"); &#125;&#125;/** * 实现Car接口 * 奥迪 */public class Audi implements Car&#123; @Override public void run() &#123; System.out.println("奥迪在跑"); &#125;&#125;/** * 使用普通方法调用比亚迪和奥迪类 * 结果： * 奥迪在跑 * 比亚迪再跑 */public class Client01 &#123; public static void main(String[] args) &#123; Car c1 = new Audi(); Car c2 = new Byd(); c1.run(); c2.run(); &#125;&#125; 该方法虽然简单，但是显然没有使用遵循面向对象设计的基本原则嘛。为了提高自我代码的质量，还是要学习设计模式，并在日常编程中运用。 简单工厂模式那么，要想提高，我们先来看一下简单工厂模式的类图： 如上图所示：和我们的简单方法是不是差了点什么？没错，我们缺少CarFactory类。那我们先来看下CarFactory和他的调用 1234567891011121314151617181920212223242526272829303132/** * 简单工厂类 * 缺点：不完全满足OCP */public class CarFactory &#123; public static Car getCar(String type)&#123; if ("奥迪".equals(type))&#123; return new Audi(); &#125;else if ("比亚迪".equals(type))&#123; return new Byd(); &#125;else &#123; return null; &#125; &#125;&#125;/** * 使用简单方法调用比亚迪和奥迪类 * 结果： * 奥迪在跑 * 比亚迪再跑 */public class Client02 &#123; public static void main(String[] args) &#123; Car c1 = CarFactory.getCar("奥迪"); Car c2 = CarFactory.getCar("比亚迪"); c1.run(); c2.run(); &#125;&#125; 在调用的时候，我们可以不必需要什么而new什么，我们只需要将参数传递过去，简单工厂会自动返回我们想要的对象。是不是灵活了很多！当然，这也就是所谓的找对象原则，我原先找对象，得自己找，苦苦的找，还不一定能找到。之后呢，出现这种找对象的平台了，我不用自己跑出去找了，我跟这个平台说一声，我想要长得好看的，个子高的，肤白貌美的。恩，这个平台就会给我找到。（ps:这个比喻忘记是看哪个仁兄的比喻，暂且借用。知道后标注。）这就是我们的工厂模式。 工厂方法模式看了简单工厂，我们来了解下工厂方法模式: 简单工厂模式只有一个工厂类，而工厂方法模式有一组实现了相同接口的工厂类。 对比简单工厂模式：增加了工厂接口，通过不同的工厂类来实现工厂模式。如下图所示： 对比简单模式，我们增加了一个工厂接口，然后实现不同的工厂，这个时候，我们的调用者Client不需要知道Car的接口，只需要知道Car工厂的接口，就可以调用。是不是更加深层次的解耦代码了。这样有什么好处呢，假如我使用简单工厂模式，在我增加一个产品的时候，比如，我增加宝马，那Car的工厂类得进行修改。而使用工厂方法模式，那么我们只需要增加一个宝马的工厂类就行。但是，这样也有一个缺点，就是文件太多，不利于管理。 抽象工厂模式 用来生产不同产品族的全部产品（对于增加的新的产品，无能为力；支持增加产品族） 抽象工厂模式是工厂方法模式的升级版本，在由多个业务品种，业务分类时，通过抽象工厂模式需要的对象是一种非常好的解决方式。 注：该博文为学习总结，视频来源为高淇java300集]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java基础--反射]]></title>
+    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E5%8F%8D%E5%B0%84%2F</url>
+    <content type="text"><![CDATA[什么是反射：java通常是先有类再有对象，有对象我就可以调用方法或者属性。反射其实是通过Class对象来调用类里面的方法。通过反射可以调用私有方法和私有属性。大部分框架都是运用反射原理。 反射的作用：动态的加载类和类中的信息 反射小例子：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384@SuppressWarnings("all")public class ReflexTestDemo &#123; public static void main(String[] args)&#123; String path = "com.tfs.test.User"; User user = new User(); try &#123; //一、获取对象的方式 Class&lt;User&gt; cl1 = (Class&lt;User&gt;) Class.forName(path); Class cl2 = User.class; Class cl3 = user.getClass(); System.out.println(cl1.hashCode() == cl2.hashCode()); //true System.out.println(cl1.hashCode() == cl3.hashCode()); //true //二、获取并使用对象内置信息 //1.获取名称 System.out.println(cl1.getName()); //com.tfs.test.User System.out.println(cl1.getSimpleName()); //User //2.获取并使用属性 Field[] fields = cl1.getFields(); //只能获取public的 Field[] fields1 = cl1.getDeclaredFields(); //获取全部的 Field field = cl1.getDeclaredField("name"); //根据名字获取 User u2 = cl1.newInstance(); //利用反射获取默认构造方法 field.setAccessible(true); //设置后可以不用进行安全检测，提高性能 field.set(u2,"kid"); //给name属性赋值kid System.out.println(field.get(u2)); //输出：kid //3.获取并使用普通方法 Method method = cl1.getDeclaredMethod("setName", String.class); //参数：方法名，方法参数 User u3 = cl1.newInstance(); method.invoke(u3,"kid"); //等同于 u3.setName("kid"); 方法 System.out.println(u3.getName()); //输出：kid //4.获取并使用构造方法 Constructor constructor1 = cl1.getDeclaredConstructor(); //获取无参构造方法 Constructor constructor2 = cl1.getDeclaredConstructor(int.class,String.class); //获取有参构造方法 User u4 = (User) constructor2.newInstance(1008,"kid"); //调用该方法并传参 System.out.println(u4.getName()); //输出：null 所以该方法只是调用了有参的构造函数，并未真正的传参 &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125;&#125;/** * @Description:被调用的User类 * @Author:kid * @Date: 2018/3/26 16:17 * @ISDELETE: NO */public class User &#123; public int id; String name; public int getId() &#123; return id; &#125; public void setId(int id) &#123; this.id = id; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; public User()&#123; &#125; public User(int id,String name)&#123; &#125; 反射性能反射的会影响运行的速度，但是在开发中，有一些地方还是会需要反射。那么如何解决这个问题呢？经测验：在同时循环执行一个方法的时候，反射会比普通的方法慢很多。如将setAccessible设置为true，减少安全检测，将提升4倍的效率。]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java基础--注解]]></title>
+    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[github博客搭建]]></title>
+    <url>%2F2018%2F03%2F25%2F%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%2Fgithub%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[最近看别人都搭建了属于自己的博客，心生羡慕。于是也抽空捣鼓一个。此次个人博客搭建是利用github平台搭建博客。下面主要讲述搭建过程及遇到的坑。 准备工作github到位在github官网上申请账号。记住注册的邮箱。在注册成功后，可以选择建一个项目。此次搭建一个公共的项目（私有的貌似得花钱）。注： 项目名称必须为你注册的名称加github.io，如我的项目名为 kid-297.github.io github需要和git建立连接，需要在本地生成ssh秘钥。如果在之前你有生成ssh公钥，那么就可以直接提交上去，如果没有，则需要填写邮箱以及密码进行生成（详情请看我文章 git配置） git到位众所周知，git是一个分布式版本控制系统。而我们此次项目的上传下载到github等工作，非他莫属。git的具体安装方式，请自行百度。 node.js到位据说node.js的功能很强大啊！但具体多强大我也不甚了解啊！至于在这安装node.js干嘛，主要是想用hexo啊！安装方式也不具体说了哈。 hexo到位使用hexo呢，主要是因为Hexo是一个开源的静态博客生成器。自带很多模板，可供广大网友自行选择。 hexo搭建过程 打开cmd并输入npm install -g hexo 在你要存放hexo的地方新建一个空文件夹名为hexo cmd安装完成之后右键打开Git bash（此时要求git已经安装好了） 在Git 的运行框中进入cd 进入hexo文件夹后输入$ hexo init 如果你按照上述步骤一套做完，那么恭喜你，hexo已经搭建成功，是不是很简单？ 本地运行hexo安装完hexo之后你就能在本地查看你的空hexo blog了在cmd中输入$ hexo s –debug（debug可以不写）随后你在浏览器地址栏输入http://localhost:4000/hexo默认主题landscape就呈现在你眼前了注：hexo s是hexo server的缩写 至此，本地的环境已经搭建完毕。可以考虑上传到github上或者给你的博客更换主题了。 提交至GitHub首先进入hexo文件夹，找到根目录下面的_config.yml文件,用编辑器打开它找到deploy。部署至GitHub需要填如下：1234deploy: type: git repository: git@github.com:kid-297/kid-297.github.io.git branch: master 注：.yml文件格式严格，在“：”之后一定要空格再输入，如果不填入内容则是默认值。文中kid-297请自行跟换成自己的用户名。 创建完成后打开Git bash按下ctrl+c并输入y结束hexo的本地预览。之后进入你的hexo文件夹，输入$ hexo generate（用于生成静态网页文件，可缩写成$ hexo g） 接着输入$ hexo deploy（可缩写成hexo d） 更改hexo主题如果你对hexo默认主题不满意，你也可以自己寻找主题包甚至是自己制作。具体使用方法请移步：hexo博客更换主题（原理一样，只是主题不同） 发布文章输入$ hexo new “博客名”创建成功之后，点击进入hexo文件夹的source文件夹，找到_posts文件夹，进入用编辑器打开你刚刚创建的.md文件，你将看到如下代码 title:date:tags: 在title后面填写文章名，注意空格，tags用来设置文章标签，格式为[标签一,标签二] 设置完之后就开始使用Markdown语法进行博客创作吧 其他常见的hexo命令 $ hexo clean #清除缓存 $ hexo generate –watch #监视文件变动 $ hexo new page “页面名” #新建页面 注 ： 本博客大部分出自于强大的hexo–如何利用hexo平台搭建个人博客 感谢作者，解我搭建之坑，特此记录！]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>博客</tag>
+        <tag>github</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[git配置]]></title>
+    <url>%2F2018%2F03%2F25%2F%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%2Fgit%E9%85%8D%E7%BD%AE%2F</url>
+    <content type="text"><![CDATA[如何配置git 生成并部署SSH key打开git bash,输入以下命令生成 SSH Keyssh-keygen -t rsa -C “xxxxx@xxxxx.com“ （该邮箱为Github/GitLab注册邮箱） 在相应的.ssh目录下会生成名为id_rsa私钥文件和id_rsa.pub公钥文件， 打开id_rsa.pub公钥文件,复制里面的公钥添加到Github/GitLab的添加SSH秘钥处。 然后在git bash中输入以下命令测试Github/GitLab的SSH秘钥是否部署成功。ssh -T git@github.com 出现以下提示，表示部署Github/GitLab的SSH key成功 Hi kid-297! You’ve successfully authenticated, but GitHub does not provide shell access. 如何配置多个git在工作和学习时候，难免会遇到一台电脑同时使用多个Github/GitLab的情况。下面讲述下如何配置多个。 如上已经配置生成好了一个公钥和私钥。我们在生成第二个或者更多个的时候，需要起不同的名字。不能再使用默认的文件名id_rsa， 否则会覆盖之前的gitLab的秘钥文件。 这里保存为id_rsa_work：ssh-keygen -t rsa -f ~/.ssh/id_rsa_work -C “xxxxx@xxxxx.com“ 这时候就会在.ssh目录下又生成一对公私钥文件,同样是打开公钥文件id_rsa_work .pub，复制里面的公钥添加到Github/GitLab SSH秘钥处。 添加秘钥到SSH Agent因为默认只读取id_rsa,为了让SSH识别新的私钥，需将其添加的SSH agent中。ssh-agent bashssh-add ~/.ssh/id_rsassh-add ~/.ssh/id_rsa_work 创建并配置config文件在.ssh目录下创建一个config文本文件,添加相关配置。每个账号单独配置一个Host，每个Host要取一个别名，每个Host主要配置HostName和IdentityFile两个属性即可。 我的配置12345678910111213141516# githubHost githubHostName github.comPreferredAuthentications publickeyIdentityFile ~/.ssh/id_rsa# work githubhost gitlab#这个是真实的域名地址 HostName (此处填写GitLab的IP或者网址)#配置使用用户名User kid# 配置登录时用什么权限认证 可设为publickey,password publickey,keyboard-interactive等 PreferredAuthentications publickey#这里是id_rsa的地址IdentityFile ~/.ssh/id_rsa_work 这个时候再通过终端测试是否部署SSH Key成功 注：用户名和邮箱的配置因为一台电脑上配置了多个git账号，所以就不能再配置全局的用户名和邮箱了，而是在不同的仓库下，如果需要连接不同的git账号,配置相应的局部用户名和邮箱即可，如果之前配置过全局的用户名和邮箱,需要取消配置git config –global –unset user.namegit config –global –unset user.email 配置局部的用户名和邮箱git config user.name “xxxx”git config user.email “xxxx@xx.com“ 注：本博客大部分内容出自 windows下在一台电脑上配置多个git账号。感谢作者，解我搭建之坑，特此记录！]]></content>
+      <categories>
+        <category>工具使用</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[设计模式GOF23--单例模式]]></title>
+    <url>%2F2018%2F03%2F24%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[名词解析：GOF--&gt;Group Of Four 四人帮 设计模式共分为以下几种模式： 创建型模式： 单例模式、工厂模式、抽象工厂模式、建造者模式、原型模式 结构型模式： 适配器模式、桥接模式、装饰者模式、组合模式、外观模式、享元模式、代理模式 行为模式： 模板方法模式 、命令模式、装饰模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式。状态模式、策略模式、职责链模式、访问者模式 核心作用保证一个类只有一个实例，并且提供一个访问该实例的全局访问点。 常见的应用场景 windows的任务管理器、回收站 项目中的读取配置文件的类，数据库连接池，一般也只有一个对象。 应用程序中的日志应用、网站中的计数器 Applicathion和每个Servlet也是单例 Spring中，每个Bean也是单例的 Spring MVC框架/Struts框架中，控制对象也是单例 单例模式的优点 减少性能开销，当一个对象的产生需要比较多的资源时，如读取配置、产生其他依赖方式时，则可以通过在应用中启动时直接产生一个单例对象，然后永久驻留在内存的方式来解决。 单例模式可以在系统中设置全局的访问点，优化共享资源访问 常见的5种单例模式实现方式： 主要： 饿汉模式（线程安全，调用率高。不能延时加载） 懒汉模式（线程安全，调用率低。可以延时加载） 其他： 双重检索锁式（由于JVM底层内部模型原因，偶尔会出现问题。不建议使用） 静态内部类式（线程安全、调用率高、可以延时加载） 枚举单例（线程安全、调用率高、不能延时加载） 饿汉模式（立即加载）1234567891011public class SingletonDemo1&#123; //1.实现私有的构造器，别人不可调用 private SingletonDemo1()&#123;&#125; //2.实现一个私有的对象。 类初始化时，立即加载这个对象！由于加载类时，天然的是线程安全的 private static SingletonDemo1 instance = new SingletonDemo1(); //3.提供一个开放方法。 方法没有同步，调用效率高 public static SingletonDemo1 getInstance()&#123; return instance; &#125;&#125; 问题：如果只是加载本类，但是没有调用getInstance方法， 则会造成资源浪费 懒汉模式(延迟加载/懒加载)1234567891011121314public class SingletonDemo2&#123; //1.实现私有的构造器，别人不可调用 private SingletonDemo2()&#123;&#125; //2.实现一个私有的对象。 类初始化时，不初始化这个对象！真正用的时候创建 private static SingletonDemo2 instance; //3.提供一个开放方法。 方法同步，调用效率低 public static synchronized SingletonDemo1 getInstance()&#123; if(instance == null)&#123; instance = new SingletonDemo2(); &#125; return instance; &#125;&#125; 问题：资源利用率高了，但是每次调用getInstance方法都需要同步，并发效率较低。 双重检索锁式123456789101112131415161718192021222324252627class SingletonDemo3 &#123; private static SingletonDemo3 instance = null; public static SingletonDemo3 getInstance() &#123; if (instance == null) &#123; SingletonDemo3 sc; synchronized (SingletonDemo3.class) &#123; sc = instance; if (sc == null) &#123; synchronized (SingletonDemo3.class) &#123; if(sc == null) &#123; sc = new SingletonDemo3(); &#125; &#125; instance = sc; &#125; &#125; &#125; return instance; &#125; private SingletonDemo3() &#123; &#125;&#125; 静态内部类123456789101112131415161718/** * 静态内部类式 * 线程安全、调用率高、可以延时加载 */class SingLetonStatic&#123; //定义静态内部类 private static class SingletonClassInstance&#123; private static final SingLetonStatic singLetonStatic = new SingLetonStatic(); &#125; private SingLetonStatic()&#123; &#125; public static SingLetonStatic getInstance()&#123; return SingletonClassInstance.singLetonStatic; &#125;&#125; 枚举12345678910111213/** * 枚举 * 线程安全、调用率高、不能延时加载 */enum SingLetonEnum&#123; //这个枚举元素，本身就是单例对象 INSTANCE; public void SingLetonEnumOp()&#123; &#125;&#125; 注：该博文为学习总结，视频来源为高淇java300集]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[web消息通讯方式--即时聊天]]></title>
+    <url>%2F2018%2F03%2F21%2Fjava%20EE%2Fweb%E6%B6%88%E6%81%AF%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F-%E5%8D%B3%E6%97%B6%E8%81%8A%E5%A4%A9%2F</url>
+    <content type="text"><![CDATA[之前在一个项目中涉及到即时聊天功能，特此记录下当时的解决方法。 目前web上的消息通讯方式主要有以下几种。轮询，长连接，websocket 轮询：隔一段时间访问服务器，服务器不管有没有新消息都立刻返回。 长连接：页面向服务器发出请求，由服务器决定什么时候返回。（如果有新消息则立刻返回，没有的话就保持连接，直到有新消息才返回） websocket：类似Java Socket，由Http请求模拟实现的socket。 本次使用轮询方法做解决以下是轮询的代码：123456789101112131415161718192021222324252627 //返回未读json列 实现实时聊天 延迟1s //超时链处理 原则上和session保持一致 （例如session30分钟 180 000 毫秒） Integer sessionsec = 1800000; Integer sessionstop = 0; boolean isnewmess = false;//1.此处判断是否有新的聊天数据更新 if(isnewmess)&#123; // 返回消息内容 &#125;else&#123; //2.执行循环操作 while (isnewmess==false) &#123; //2.1 如果没有继续判断（节省服务器开销 进行休眠2 秒 为了保证实时性） sessionstop +=2000; if (sessionstop&gt;=sessionsec) &#123; isnewmess = true; //此处销毁链接 返回特征码 &#125;else&#123; Thread.sleep(1000); //此处判断是否有新的聊天数据更新 if (isnewmess) &#123; //返回消息内容 break; &#125; &#125; &#125; &#125;]]></content>
+      <categories>
+        <category>JAVA EE</category>
+      </categories>
+      <tags>
+        <tag>即时聊天</tag>
+      </tags>
+  </entry>
+</search>

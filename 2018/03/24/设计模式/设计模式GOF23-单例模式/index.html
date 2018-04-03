@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="kid-297">
 <meta property="og:description" content="名词解析：GOF--&amp;gt;Group Of Four 四人帮 设计模式共分为以下几种模式： 创建型模式： 单例模式、工厂模式、抽象工厂模式、建造者模式、原型模式   结构型模式： 适配器模式、桥接模式、装饰者模式、组合模式、外观模式、享元模式、代理模式   行为模式： 模板方法模式 、命令模式、装饰模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式。状态模式、策略模式、职责链模式、">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-24T14:57:40.728Z">
+<meta property="og:updated_time" content="2018-04-03T10:43:24.873Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式GOF23--单例模式">
 <meta name="twitter:description" content="名词解析：GOF--&amp;gt;Group Of Four 四人帮 设计模式共分为以下几种模式： 创建型模式： 单例模式、工厂模式、抽象工厂模式、建造者模式、原型模式   结构型模式： 适配器模式、桥接模式、装饰者模式、组合模式、外观模式、享元模式、代理模式   行为模式： 模板方法模式 、命令模式、装饰模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式。状态模式、策略模式、职责链模式、">
@@ -184,7 +184,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -194,7 +194,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -204,7 +204,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -214,7 +214,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -357,6 +357,7 @@
 </ul>
 </li>
 </ul>
+<a id="more"></a>
 <h1 id="核心作用"><a href="#核心作用" class="headerlink" title="核心作用"></a>核心作用</h1><p>保证一个类只有一个实例，并且提供一个访问该实例的全局访问点。</p>
 <h1 id="常见的应用场景"><a href="#常见的应用场景" class="headerlink" title="常见的应用场景"></a>常见的应用场景</h1><ul>
 <li>windows的任务管理器、回收站</li>
@@ -383,11 +384,13 @@
 </ul>
 </li>
 </ul>
-<p>此次只讲主要的两种模式</p>
-<h1 id="饿汉模式（立即加载）"><a href="#饿汉模式（立即加载）" class="headerlink" title="饿汉模式（立即加载）"></a>饿汉模式（立即加载）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo1</span></span>&#123;</span><br><span class="line">	<span class="comment">//1.实现私有的构造器，别人不可调用</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonDemo1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="comment">//2.实现一个私有的对象。 类初始化时，立即加载这个对象！由于加载类时，天然的是线程安全的</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonDemo1 instance = <span class="keyword">new</span> SingletonDemo1();</span><br><span class="line">	<span class="comment">//3.提供一个开放方法。 方法没有同步，调用效率高</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonDemo1  <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="饿汉模式（立即加载）"><a href="#饿汉模式（立即加载）" class="headerlink" title="饿汉模式（立即加载）"></a>饿汉模式（立即加载）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo1</span></span>&#123;</span><br><span class="line">	<span class="comment">//1.实现私有的构造器，别人不可调用</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonDemo1</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="comment">//2.实现一个私有的对象。 类初始化时，立即加载这个对象！由于加载类时，天然的是线程安全的</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonDemo1 instance = <span class="keyword">new</span> SingletonDemo1();</span><br><span class="line">	<span class="comment">//3.提供一个开放方法。 方法没有同步，调用效率高</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonDemo1  <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>问题</strong>：如果只是加载本类，但是没有调用getInstance方法， 则会造成资源浪费</p>
-<h1 id="懒汉模式-延迟加载-懒加载"><a href="#懒汉模式-延迟加载-懒加载" class="headerlink" title="懒汉模式(延迟加载/懒加载)"></a>懒汉模式(延迟加载/懒加载)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo2</span></span>&#123;</span><br><span class="line">	<span class="comment">//1.实现私有的构造器，别人不可调用</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonDemo2</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="comment">//2.实现一个私有的对象。 类初始化时，不初始化这个对象！真正用的时候创建</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonDemo2 instance;</span><br><span class="line">	<span class="comment">//3.提供一个开放方法。 方法同步，调用效率低</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingletonDemo1  <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">			instance = <span class="keyword">new</span> SingletonDemo2();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="懒汉模式-延迟加载-懒加载"><a href="#懒汉模式-延迟加载-懒加载" class="headerlink" title="懒汉模式(延迟加载/懒加载)"></a>懒汉模式(延迟加载/懒加载)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo2</span></span>&#123;</span><br><span class="line">	<span class="comment">//1.实现私有的构造器，别人不可调用</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonDemo2</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="comment">//2.实现一个私有的对象。 类初始化时，不初始化这个对象！真正用的时候创建</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonDemo2 instance;</span><br><span class="line">	<span class="comment">//3.提供一个开放方法。 方法同步，调用效率低</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> SingletonDemo1  <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">			instance = <span class="keyword">new</span> SingletonDemo2();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>问题</strong>：资源利用率高了，但是每次调用getInstance方法都需要同步，并发效率较低。</p>
+<h2 id="双重检索锁式"><a href="#双重检索锁式" class="headerlink" title="双重检索锁式"></a>双重检索锁式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingletonDemo3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SingletonDemo3 instance = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonDemo3 <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</span><br><span class="line">            SingletonDemo3 sc;</span><br><span class="line">            <span class="keyword">synchronized</span> (SingletonDemo3.class) &#123;</span><br><span class="line">                sc = instance;</span><br><span class="line">                <span class="keyword">if</span> (sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">synchronized</span> (SingletonDemo3.class) &#123;</span><br><span class="line">                        <span class="keyword">if</span>(sc == <span class="keyword">null</span>) &#123;</span><br><span class="line">                            sc = <span class="keyword">new</span> SingletonDemo3();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    instance = sc;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> instance;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingletonDemo3</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 静态内部类式</span></span><br><span class="line"><span class="comment"> * 线程安全、调用率高、可以延时加载</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SingLetonStatic</span></span>&#123;</span><br><span class="line">	<span class="comment">//定义静态内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonClassInstance</span></span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingLetonStatic singLetonStatic = <span class="keyword">new</span> SingLetonStatic();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">SingLetonStatic</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingLetonStatic <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonClassInstance.singLetonStatic;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 枚举</span></span><br><span class="line"><span class="comment"> * 线程安全、调用率高、不能延时加载</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">enum</span> SingLetonEnum&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这个枚举元素，本身就是单例对象</span></span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SingLetonEnumOp</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <pre><code>注：该博文为学习总结，视频来源为高淇java300集
 </code></pre>
       
@@ -429,8 +432,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/25/博客搭建/github博客搭建/" rel="prev" title="github博客搭建">
-                github博客搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/25/工具使用/git配置/" rel="prev" title="git配置">
+                git配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -512,7 +515,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -523,7 +526,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -534,7 +537,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -544,6 +547,16 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kid-297" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -567,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式共分为以下几种模式："><span class="nav-number">1.</span> <span class="nav-text">设计模式共分为以下几种模式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心作用"><span class="nav-number">2.</span> <span class="nav-text">核心作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的应用场景"><span class="nav-number">3.</span> <span class="nav-text">常见的应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式的优点"><span class="nav-number">4.</span> <span class="nav-text">单例模式的优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的5种单例模式实现方式："><span class="nav-number">5.</span> <span class="nav-text">常见的5种单例模式实现方式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#饿汉模式（立即加载）"><span class="nav-number">6.</span> <span class="nav-text">饿汉模式（立即加载）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#懒汉模式-延迟加载-懒加载"><span class="nav-number">7.</span> <span class="nav-text">懒汉模式(延迟加载/懒加载)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式共分为以下几种模式："><span class="nav-number">1.</span> <span class="nav-text">设计模式共分为以下几种模式：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心作用"><span class="nav-number">2.</span> <span class="nav-text">核心作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的应用场景"><span class="nav-number">3.</span> <span class="nav-text">常见的应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单例模式的优点"><span class="nav-number">4.</span> <span class="nav-text">单例模式的优点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常见的5种单例模式实现方式："><span class="nav-number">5.</span> <span class="nav-text">常见的5种单例模式实现方式：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#饿汉模式（立即加载）"><span class="nav-number">5.1.</span> <span class="nav-text">饿汉模式（立即加载）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒汉模式-延迟加载-懒加载"><span class="nav-number">5.2.</span> <span class="nav-text">懒汉模式(延迟加载/懒加载)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双重检索锁式"><span class="nav-number">5.3.</span> <span class="nav-text">双重检索锁式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态内部类"><span class="nav-number">5.4.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举"><span class="nav-number">5.5.</span> <span class="nav-text">枚举</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -595,6 +608,10 @@
 
   
 </div>
+
+
+
+
 
 
   <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>

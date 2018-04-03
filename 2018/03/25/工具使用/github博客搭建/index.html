@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="即时聊天," />
+  <meta name="keywords" content="git,博客,github,hexo," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="之前在一个项目中涉及到即时聊天功能，特此记录下当时的解决方法。 目前web上的消息通讯方式主要有以下几种。轮询，长连接，websocket  轮询：隔一段时间访问服务器，服务器不管有没有新消息都立刻返回。 长连接：页面向服务器发出请求，由服务器决定什么时候返回。（如果有新消息则立刻返回，没有的话就保持连接，直到有新消息才返回） websocket：类似Java Socket，由Http请求模拟实现">
-<meta name="keywords" content="即时聊天">
+<meta name="description" content="最近看别人都搭建了属于自己的博客，心生羡慕。于是也抽空捣鼓一个。此次个人博客搭建是利用github平台搭建博客。下面主要讲述搭建过程及遇到的坑。  准备工作github到位在github官网上申请账号。记住注册的邮箱。在注册成功后，可以选择建一个项目。此次搭建一个公共的项目（私有的貌似得花钱）。注： 项目名称必须为你注册的名称加github.io，如我的项目名为 kid-297.github.io">
+<meta name="keywords" content="git,博客,github,hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="web消息通讯方式--即时聊天">
-<meta property="og:url" content="http://yoursite.com/2018/03/21/java EE/web消息通讯方式-即时聊天/index.html">
+<meta property="og:title" content="github博客搭建">
+<meta property="og:url" content="http://yoursite.com/2018/03/25/工具使用/github博客搭建/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="之前在一个项目中涉及到即时聊天功能，特此记录下当时的解决方法。 目前web上的消息通讯方式主要有以下几种。轮询，长连接，websocket  轮询：隔一段时间访问服务器，服务器不管有没有新消息都立刻返回。 长连接：页面向服务器发出请求，由服务器决定什么时候返回。（如果有新消息则立刻返回，没有的话就保持连接，直到有新消息才返回） websocket：类似Java Socket，由Http请求模拟实现">
+<meta property="og:description" content="最近看别人都搭建了属于自己的博客，心生羡慕。于是也抽空捣鼓一个。此次个人博客搭建是利用github平台搭建博客。下面主要讲述搭建过程及遇到的坑。  准备工作github到位在github官网上申请账号。记住注册的邮箱。在注册成功后，可以选择建一个项目。此次搭建一个公共的项目（私有的貌似得花钱）。注： 项目名称必须为你注册的名称加github.io，如我的项目名为 kid-297.github.io">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T10:42:16.438Z">
+<meta property="og:updated_time" content="2018-04-03T10:42:52.912Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="web消息通讯方式--即时聊天">
-<meta name="twitter:description" content="之前在一个项目中涉及到即时聊天功能，特此记录下当时的解决方法。 目前web上的消息通讯方式主要有以下几种。轮询，长连接，websocket  轮询：隔一段时间访问服务器，服务器不管有没有新消息都立刻返回。 长连接：页面向服务器发出请求，由服务器决定什么时候返回。（如果有新消息则立刻返回，没有的话就保持连接，直到有新消息才返回） websocket：类似Java Socket，由Http请求模拟实现">
+<meta name="twitter:title" content="github博客搭建">
+<meta name="twitter:description" content="最近看别人都搭建了属于自己的博客，心生羡慕。于是也抽空捣鼓一个。此次个人博客搭建是利用github平台搭建博客。下面主要讲述搭建过程及遇到的坑。  准备工作github到位在github官网上申请账号。记住注册的邮箱。在注册成功后，可以选择建一个项目。此次搭建一个公共的项目（私有的貌似得花钱）。注： 项目名称必须为你注册的名称加github.io，如我的项目名为 kid-297.github.io">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/21/java EE/web消息通讯方式-即时聊天/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/03/25/工具使用/github博客搭建/"/>
 
 
 
 
 
-  <title>web消息通讯方式--即时聊天 | kid-297</title>
+  <title>github博客搭建 | kid-297</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/21/java EE/web消息通讯方式-即时聊天/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/25/工具使用/github博客搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kid-297">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">web消息通讯方式--即时聊天</h1>
+          <h1 class="post-title" itemprop="name headline">github博客搭建</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T14:56:35+08:00">
-                2018-03-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T15:41:37+08:00">
+                2018-03-25
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA-EE/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA EE</span>
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
                   </a>
                 </span>
 
@@ -342,15 +342,45 @@
       
 
       
-        <p>之前在一个项目中涉及到即时聊天功能，特此记录下当时的解决方法。</p>
-<p>目前web上的消息通讯方式主要有以下几种。<strong>轮询，长连接，websocket</strong></p>
-<ul>
-<li>轮询：隔一段时间访问服务器，服务器不管有没有新消息都立刻返回。</li>
-<li>长连接：页面向服务器发出请求，由服务器决定什么时候返回。（如果有新消息则立刻返回，没有的话就保持连接，直到有新消息才返回）</li>
-<li>websocket：类似Java Socket，由Http请求模拟实现的socket。</li>
-</ul>
+        <p>最近看别人都搭建了属于自己的博客，心生羡慕。于是也抽空捣鼓一个。此次个人博客搭建是利用github平台搭建博客。下面主要讲述搭建过程及遇到的坑。</p>
+<hr>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="github到位"><a href="#github到位" class="headerlink" title="github到位"></a>github到位</h2><p>在github官网上申请账号。记住注册的邮箱。在注册成功后，可以选择建一个项目。此次搭建一个公共的项目（私有的貌似得花钱）。<br><strong>注：</strong> 项目名称必须为你注册的名称加github.io，如我的项目名为 <strong>kid-297.github.io</strong></p>
+<p>github需要和git建立连接，需要在本地生成ssh秘钥。如果在之前你有生成ssh公钥，那么就可以直接提交上去，如果没有，则需要填写邮箱以及密码进行生成（详情请看我文章 <a href="https://kid-297.github.io/2018/03/26/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/git%E9%85%8D%E7%BD%AE/" target="_blank" rel="noopener">git配置</a>）</p>
 <a id="more"></a>
-<h1 id="本次使用轮询方法做解决"><a href="#本次使用轮询方法做解决" class="headerlink" title="本次使用轮询方法做解决"></a>本次使用轮询方法做解决</h1><p>以下是轮询的代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//返回未读json列  实现实时聊天 延迟1s</span></span><br><span class="line"> <span class="comment">//超时链处理  原则上和session保持一致 （例如session30分钟  180 000 毫秒）</span></span><br><span class="line"> Integer sessionsec = <span class="number">1800000</span>;</span><br><span class="line"> Integer sessionstop = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">boolean</span> isnewmess = <span class="keyword">false</span>;</span><br><span class="line"><span class="comment">//1.此处判断是否有新的聊天数据更新</span></span><br><span class="line"> <span class="keyword">if</span>(isnewmess)&#123;</span><br><span class="line">	  <span class="comment">// 返回消息内容</span></span><br><span class="line"> &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="comment">//2.执行循环操作</span></span><br><span class="line">	 <span class="keyword">while</span> (isnewmess==<span class="keyword">false</span>) &#123;</span><br><span class="line">		<span class="comment">//2.1 如果没有继续判断（节省服务器开销 进行休眠2 秒 为了保证实时性） </span></span><br><span class="line">		 sessionstop +=<span class="number">2000</span>;</span><br><span class="line">		 <span class="keyword">if</span> (sessionstop&gt;=sessionsec) &#123;</span><br><span class="line">			 isnewmess = <span class="keyword">true</span>;</span><br><span class="line">			 <span class="comment">//此处销毁链接 返回特征码</span></span><br><span class="line">		 &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			 Thread.sleep(<span class="number">1000</span>);   </span><br><span class="line">				<span class="comment">//此处判断是否有新的聊天数据更新</span></span><br><span class="line">				 <span class="keyword">if</span> (isnewmess) &#123;</span><br><span class="line">					 <span class="comment">//返回消息内容</span></span><br><span class="line">					 <span class="keyword">break</span>;</span><br><span class="line">				 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">	 &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="git到位"><a href="#git到位" class="headerlink" title="git到位"></a>git到位</h2><p>众所周知，git是一个分布式版本控制系统。而我们此次项目的上传下载到github等工作，非他莫属。git的具体安装方式，请自行百度。</p>
+<h2 id="node-js到位"><a href="#node-js到位" class="headerlink" title="node.js到位"></a>node.js到位</h2><p>据说node.js的功能很强大啊！但具体多强大我也不甚了解啊！至于在这安装node.js干嘛，主要是想用hexo啊！安装方式也不具体说了哈。</p>
+<h2 id="hexo到位"><a href="#hexo到位" class="headerlink" title="hexo到位"></a>hexo到位</h2><p>使用hexo呢，主要是因为Hexo是一个开源的静态博客生成器。自带很多模板，可供广大网友自行选择。</p>
+<h3 id="hexo搭建过程"><a href="#hexo搭建过程" class="headerlink" title="hexo搭建过程"></a>hexo搭建过程</h3><ul>
+<li>打开cmd并输入npm install -g hexo</li>
+<li>在你要存放hexo的地方新建一个空文件夹名为hexo</li>
+<li>cmd安装完成之后右键打开Git bash（此时要求git已经安装好了）</li>
+<li><p>在Git 的运行框中进入cd 进入hexo文件夹后输入$ hexo init</p>
+<p>  如果你按照上述步骤一套做完，那么恭喜你，hexo已经搭建成功，是不是很简单？</p>
+</li>
+</ul>
+<h1 id="本地运行hexo"><a href="#本地运行hexo" class="headerlink" title="本地运行hexo"></a>本地运行hexo</h1><p>安装完hexo之后你就能在本地查看你的空hexo blog了<br>在cmd中输入$ hexo s –debug（debug可以不写）随后你在浏览器地址栏输入<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a><br>hexo默认主题landscape就呈现在你眼前了<br><strong>注</strong>：hexo s是hexo server的缩写</p>
+<p>至此，本地的环境已经搭建完毕。可以考虑上传到github上或者给你的博客更换主题了。</p>
+<h1 id="提交至GitHub"><a href="#提交至GitHub" class="headerlink" title="提交至GitHub"></a>提交至GitHub</h1><p>首先进入hexo文件夹，找到根目录下面的_config.yml文件,用编辑器打开它<br>找到<strong>deploy</strong>。部署至GitHub需要填如下：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repository:</span> <span class="string">git@github.com:kid-297/kid-297.github.io.git</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>注</strong>：.yml文件格式严格，在“：”之后一定要空格再输入，如果不填入内容则是默认值。<br>文中<strong>kid-297</strong>请自行跟换成自己的用户名。</p>
+<p>创建完成后打开Git bash按下ctrl+c并输入y结束hexo的本地预览。之后进入你的hexo文件夹，输入$ hexo generate（用于生成静态网页文件，可缩写成$ hexo g）</p>
+<p>接着输入$ hexo deploy（可缩写成hexo d）</p>
+<h1 id="更改hexo主题"><a href="#更改hexo主题" class="headerlink" title="更改hexo主题"></a>更改hexo主题</h1><p>如果你对hexo默认主题不满意，你也可以自己寻找主题包甚至是自己制作。<br>具体使用方法请移步：<a href="https://www.tuicool.com/articles/zeIZJzv" target="_blank" rel="noopener">hexo博客更换主题</a>（原理一样，只是主题不同）</p>
+<h1 id="发布文章"><a href="#发布文章" class="headerlink" title="发布文章"></a>发布文章</h1><p>输入$ hexo new “博客名”<br>创建成功之后，点击进入hexo文件夹的source文件夹，找到_posts文件夹，进入用编辑器打开你刚刚创建的.md文件，你将看到如下代码</p>
+<hr>
+<p>title:<br>date:<br>tags:</p>
+<hr>
+<p>在title后面填写文章名，注意空格，tags用来设置文章标签，格式为[标签一,标签二]</p>
+<p>设置完之后就开始使用Markdown语法进行博客创作吧</p>
+<h1 id="其他常见的hexo命令"><a href="#其他常见的hexo命令" class="headerlink" title="其他常见的hexo命令"></a>其他常见的hexo命令</h1><ul>
+<li><p>$ hexo clean #清除缓存</p>
+</li>
+<li><p>$ hexo generate –watch #监视文件变动</p>
+</li>
+<li><p>$ hexo new page “页面名” #新建页面</p>
+</li>
+</ul>
+<hr>
+<p>注 ： 本博客大部分出自于<a href="https://segmentfault.com/a/1190000008074407" target="_blank" rel="noopener">强大的hexo–如何利用hexo平台搭建个人博客</a> 感谢作者，解我搭建之坑，特此记录！</p>
 
       
     </div>
@@ -368,7 +398,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/即时聊天/" rel="tag"># 即时聊天</a>
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+            <a href="/tags/博客/" rel="tag"># 博客</a>
+          
+            <a href="/tags/github/" rel="tag"># github</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
           
         </div>
       
@@ -381,14 +417,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/03/25/工具使用/git配置/" rel="next" title="git配置">
+                <i class="fa fa-chevron-left"></i> git配置
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/24/设计模式/设计模式GOF23-单例模式/" rel="prev" title="设计模式GOF23--单例模式">
-                设计模式GOF23--单例模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/26/Java基础/java基础--注解/" rel="prev" title="java基础--注解">
+                java基础--注解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -535,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本次使用轮询方法做解决"><span class="nav-number">1.</span> <span class="nav-text">本次使用轮询方法做解决</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#github到位"><span class="nav-number">1.1.</span> <span class="nav-text">github到位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git到位"><span class="nav-number">1.2.</span> <span class="nav-text">git到位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js到位"><span class="nav-number">1.3.</span> <span class="nav-text">node.js到位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo到位"><span class="nav-number">1.4.</span> <span class="nav-text">hexo到位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo搭建过程"><span class="nav-number">1.4.1.</span> <span class="nav-text">hexo搭建过程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地运行hexo"><span class="nav-number">2.</span> <span class="nav-text">本地运行hexo</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#提交至GitHub"><span class="nav-number">3.</span> <span class="nav-text">提交至GitHub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#更改hexo主题"><span class="nav-number">4.</span> <span class="nav-text">更改hexo主题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发布文章"><span class="nav-number">5.</span> <span class="nav-text">发布文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他常见的hexo命令"><span class="nav-number">6.</span> <span class="nav-text">其他常见的hexo命令</span></a></li></ol></div>
             
 
           </div>
