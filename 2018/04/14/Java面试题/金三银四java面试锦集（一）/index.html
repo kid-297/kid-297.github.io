@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Java基础1. List 和 Set 的区别 List和set同属于Collection的子类：  是否有序：List是有序的，set是无序的（TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。） 是否重复：List是可重复的，set是不可重复的 是否为空：List允许有多个null，set只允许有一个为null">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="金三银四java面试锦集（一）">
+<meta property="og:url" content="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/index.html">
+<meta property="og:site_name" content="kid-297">
+<meta property="og:description" content="Java基础1. List 和 Set 的区别 List和set同属于Collection的子类：  是否有序：List是有序的，set是无序的（TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。） 是否重复：List是可重复的，set是不可重复的 是否为空：List允许有多个null，set只允许有一个为null">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/Collection.png">
+<meta property="og:image" content="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/Map.jpg">
+<meta property="og:updated_time" content="2018-04-14T01:44:13.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="金三银四java面试锦集（一）">
+<meta name="twitter:description" content="Java基础1. List 和 Set 的区别 List和set同属于Collection的子类：  是否有序：List是有序的，set是无序的（TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。） 是否重复：List是可重复的，set是不可重复的 是否为空：List允许有多个null，set只允许有一个为null">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/Collection.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/"/>
+
+
+
+
+
+  <title>金三银四java面试锦集（一） | kid-297</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">kid-297</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/14/Java面试题/金三银四java面试锦集（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="kid-297">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kid-297">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">金三银四java面试锦集（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T09:38:04+08:00">
+                2018-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java面试题/" itemprop="url" rel="index">
+                    <span itemprop="name">java面试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><p><strong>1. List 和 Set 的区别</strong></p>
+<p>List和set同属于Collection的子类：</p>
+<ul>
+<li>是否有序：List是有序的，set是无序的（TreeSet通过 Comparator  或者 Comparable 维护了一个排序顺序。）</li>
+<li>是否重复：List是可重复的，set是不可重复的</li>
+<li>是否为空：List允许有多个null，set只允许有一个为null</li>
+</ul>
+<a id="more"></a>
+<p>拓展：</p>
+<p>Map和List、set的区别（Map不属于Collection的子类）：</p>
+<ul>
+<li>Map是无序的</li>
+<li>Map的键不允许重复，值允许重复</li>
+<li>Map的键只允许有一个null，值允许多个null</li>
+</ul>
+<img src="/2018/04/14/Java面试题/金三银四java面试锦集（一）/Collection.png">
+<img src="/2018/04/14/Java面试题/金三银四java面试锦集（一）/Map.jpg">
+<p><strong>2. HashSet 是如何保证不重复的</strong></p>
+<p>HashSet的底层实现结构是HashMap,它存放数据于HashMap的键中。而根据HashMap的特性，键是不允许重复的。</p>
+<p>拓展：</p>
+<p>HashMap是以键值对存储数据的。它底层存放数据是数组+链表!每一个键，都有它相对应的唯一的hashcode码。当调用put方法放置一个key-value时，会获取键的hashcode，然后根据算法（h &amp; (length -1)），计算出应该存放的对应的数组块位置。如果多个hashcode计算出需要存放在同一数组块，则以链表的形式存储。</p>
+<p>详情请看:<a href="http://www.importnew.com/7099.html" target="_blank" rel="noopener">HashMap的工作原理</a></p>
+<p><strong>3. HashMap 是线程安全的吗，为什么不是线程安全的（最好画图说明多线程环境下不安全）?</strong></p>
+<p> HashMap是线程不安全的。<br>hash碰撞和扩容的情况下会导致数据丢失或者形成闭环链表。</p>
+<p>详情请看:<a href="https://www.cnblogs.com/qiumingcheng/p/5259892.html" target="_blank" rel="noopener">HashMap为什么线程不安全(hash碰撞与扩容导致)</a>、<br><a href="http://www.importnew.com/22011.html" target="_blank" rel="noopener">谈谈HashMap线程不安全的体现</a></p>
+<p><strong>4. HashMap 的扩容过程</strong></p>
+<ul>
+<li>计算当前数组的长度是否到最大值，如果到最大值，则修改阈值(2^31-1)之后，不会扩容</li>
+<li>否则，初始化一个新的数组，将数据转移到新的数组里。</li>
+<li>将新数组引用到hashmap里</li>
+<li>修改阈值</li>
+</ul>
+<p>拓展：</p>
+<ul>
+<li>HashMap初始容量为16，负载因子：0.75，即当前数组长度超过总长度的75%,则进行扩容。每次扩容为2的倍数。</li>
+<li><p>数据转移过程（上接第二条）</p>
+<ul>
+<li>遍历数组中的每一个元素</li>
+<li>重新计算每个元素在数组中的位置  </li>
+<li>将元素放在数组上</li>
+<li>访问下一个Entry链上的元素</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">transfer</span><span class="params">(Entry[] newTable)</span> </span>&#123;  </span><br><span class="line">    Entry[] src = table;                   <span class="comment">//src引用了旧的Entry数组  </span></span><br><span class="line">    <span class="keyword">int</span> newCapacity = newTable.length;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; src.length; j++) &#123; <span class="comment">//遍历旧的Entry数组  </span></span><br><span class="line">        Entry&lt;K, V&gt; e = src[j];             <span class="comment">//取得旧Entry数组的每个元素  </span></span><br><span class="line">        <span class="keyword">if</span> (e != <span class="keyword">null</span>) &#123;  </span><br><span class="line">            src[j] = <span class="keyword">null</span>;<span class="comment">//释放旧Entry数组的对象引用（for循环后，旧的Entry数组不再引用任何对象）  </span></span><br><span class="line">            <span class="keyword">do</span> &#123;  </span><br><span class="line">                Entry&lt;K, V&gt; next = e.next;  </span><br><span class="line">                <span class="keyword">int</span> i = indexFor(e.hash, newCapacity); <span class="comment">//！！重新计算每个元素在数组中的位置  </span></span><br><span class="line">                e.next = newTable[i]; <span class="comment">//标记[1]  </span></span><br><span class="line">                newTable[i] = e;      <span class="comment">//将元素放在数组上  </span></span><br><span class="line">                e = next;             <span class="comment">//访问下一个Entry链上的元素  </span></span><br><span class="line">            &#125; <span class="keyword">while</span> (e != <span class="keyword">null</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>详情请看：<a href="https://blog.csdn.net/aichuanwendang/article/details/53317351" target="_blank" rel="noopener">HashMap的扩容机制—resize()</a> </p>
+<p><strong>5. HashMap 1.7 与 1.8 的 区别，说明 1.8 做了哪些优化，如何优化的？</strong></p>
+<ul>
+<li><p>JDK1.7中</p>
+<ul>
+<li>使用一个Entry数组来存储数据，用key的hashcode取模来决定key会被放到数组里的位置，如果hashcode相同，或者hashcode取模后的结果相同（hash collision），那么这些key会被定位到Entry数组的同一个格子里，这些key会形成一个链表。在hashcode特别差的情况下，比方说所有key的hashcode都相同，这个链表可能会很长，那么put/get操作都可能需要遍历这个链表。也就是说时间复杂度在最差情况下会退化到O(n)</li>
+<li>在扩容的时候，需要重新计算hashcode的值（hash collision），然后放到对应的数组格子里</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>JDK1.8中</p>
+<ul>
+<li>使用一个Node数组来存储数据，但这个Node可能是链表结构，也可能是红黑树结构。如果插入的key的hashcode相同，那么这些key也会被定位到Node数组的同一个格子里。如果同一个格子里的key不超过8个，使用链表结构存储。如果超过了8个，那么会调用treeifyBin函数，将链表转换为红黑树。那么即使hashcode完全相同，由于红黑树的特点，查找某个特定元素，也只需要O(log n)的开销、也就是说put/get的操作的时间复杂度最差只有O(log n)</li>
+<li>在扩容时候，可直接根据原来的hash值新增的那个bit是1还是0就好了，是0的话索引没变，是1的话索引变成“原索引+oldCap”</li>
+</ul>
+</li>
+</ul>
+<p>详情请看：<a href="http://www.cnblogs.com/stevenczp/p/7028071.html" target="_blank" rel="noopener">HashMap在Java1.7与1.8中的区别</a></p>
+<p><strong>6. final finally finalize</strong></p>
+<ul>
+<li>final 是修饰符，关键字。被final修饰的类，就不能再派生新的子类，不能作为父类被子类继承，如String类。</li>
+<li>finally是异常处理时，提供的finally块。不管是走try块还是catch块，都会执行finally块的代码。通常用来做清除操作或关闭流。</li>
+<li>finalze是一个方法。java技术允许使用finalize（）方法在垃圾收集器将对象从内存中清除出去之前做必要的清理工作。finalize（）方法是在垃圾收集器删除对象之前对这个对象调用的。 </li>
+</ul>
+<p><strong>7. 强引用 、软引用、 弱引用、虚引用</strong></p>
+<ul>
+<li><p>强引用(Strong Reference),是最难被GC回收的，宁可虚拟机抛出异常，中断程序，也不回收强引用指向的实例对象。</p>
+</li>
+<li><p>软引用 (SoftReference)，在内存不足时，GC会回收软引用指向的对象</p>
+</li>
+<li><p>弱引用(WeakReference)，不管内存足不足，只要我GC,我都可能回收弱引用指向的对象</p>
+</li>
+<li><p>虚引用(PhantomReference )，该回收就回收，无所谓了，虚引用，我随便回收你，也叫幽灵引用，其实就是相当于没有指向任何实例对象</p>
+</li>
+</ul>
+<p><strong>8. Java反射</strong></p>
+<ul>
+<li>在不用new的情况下，可以通过.class获取类中的方法和属性。</li>
+<li>反射就是把java类中的各种成分映射成一个个的Java对象</li>
+</ul>
+<p><strong>9. Arrays.sort 实现原理和 Collection 实现原理</strong></p>
+<p>事实上Collections.sort方法底层就是调用的array.sort方法,Colletions.sort()实际会将list转为数组，然后调用Arrays.sort()，排完了再转回List。</p>
+<ul>
+<li><p>JDK6里用的是快速排序，对于对象类型(Object[])，JDK6则使用归并排序</p>
+</li>
+<li><p>JDK7的进步<br>到了JDK7，快速排序升级为双基准快排(双基准快排 vs 三路快排)；归并排序升级为归并排序的改进版TimSort，一个JDK的自我进化。</p>
+</li>
+<li><p>JDK8的进步<br>再到了JDK8， 对大集合增加了Arrays.parallelSort()函数，使用fork-Join框架，充分利用多核，对大的集合进行切分然后再归并排序，而在小的连续片段里，依然使用TimSort与DualPivotQuickSort(双轴快排)。<br>(TimSort算法就是找到已经排好序数据的子序列，然后对剩余部分排序，然后合并起来)</p>
+</li>
+</ul>
+<p><strong>10. LinkedHashMap的应用</strong></p>
+<ul>
+<li>LinkedHashMap是HashMap的子类，它与HashMap的不同是HashMap是无序的，而LinkedHashMap维护着一个运行于所有条目的双重链接列表。</li>
+<li>LinkedHashMap除了支持默认的插入顺序，还支持访问顺序。所谓访问顺序(access-order)是指在迭代遍历列表中的元素时最近访问的元素会排在LinkedHashMap的尾部 </li>
+</ul>
+<p><strong>11. cloneable接口实现原理</strong></p>
+<p>Cloneable没有定义任何的接口方法，该接口在这里起到了一种标识的作用，表明实现它的类具备了实例拷贝功能。要想使一个类具备拷贝实例的功能，那么除了要重写Object类的clone()方法外，还必须要实现Cloneable接口</p>
+<p>详情请看：<a href="https://blog.csdn.net/u013916933/article/details/51590332" target="_blank" rel="noopener"> JavaSE学习随笔（一） Cloneable接口源码分析与技术细节</a></p>
+<p><strong>12. 异常分类以及处理机制</strong></p>
+<ul>
+<li>Error是无法处理的异常，比如OutOfMemoryError（内存溢出），一般发生这种异常，JVM会选择终止程序。因此我们编写程序时不需要关心这类异常。</li>
+<li><p>Exception也就是我们经常见到的一些异常情况，这些异常是我们可以处理的异常，是所有异常类的父类。</p>
+<ul>
+<li>RuntimeException运行时异常</li>
+<li>RuntimeNoException非运行时异常包括IOException、SQLException等</li>
+</ul>
+</li>
+<li><p>unchecked exception（非受查异常），包括Error和RuntimeException，比如常见的NullPointerException、IndexOutOfBoundsException。对于RuntimeException，java编译器不要求必须进行异常捕获处理或者抛出声明，由程序员自行决定。</p>
+</li>
+<li><p>checked exception（受查异常），也称非运行时异常（运行时异常以外的异常就是非运行时异常），由代码能力之外的因素导致的运行时错误。java编译器强制程序员必须进行捕获处理，比如常见的有IOExeption和SQLException。如果不进行捕获或者抛出声明处理，编译都不会通过。</p>
+</li>
+</ul>
+<p>处理：捕获机制：try-catch-finally </p>
+<p><strong>13. wait和sleep的区别</strong></p>
+<ul>
+<li>wait 休眠后会释放对象锁</li>
+<li>sleep 休眠后不会释放对象锁</li>
+</ul>
+<p><strong>14. 数组在内存中如何分配</strong></p>
+<p>在堆内存中开辟一块空间，存放数组。在栈中添加引用。</p>
+<p>本文题目提供：<a href="https://juejin.im/post/5aacad4551882555642bd1b0" target="_blank" rel="noopener">金三银四跳槽季，Java面试大纲 作者：占小狼</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/设计模式/设计模式GOF23-工厂模式/" rel="next" title="设计模式GOF23--工厂模式">
+                <i class="fa fa-chevron-left"></i> 设计模式GOF23--工厂模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="kid-297" />
+            
+              <p class="site-author-name" itemprop="name">kid-297</p>
+              <p class="site-description motion-element" itemprop="description">从来如此，便是对的？</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kid-297" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java基础"><span class="nav-number">1.</span> <span class="nav-text">Java基础</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kid-297</span>
+
+  
+</div>
+
+
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
