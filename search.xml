@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设计模式GOF23--适配器模式]]></title>
+    <url>%2F2018%2F08%2F20%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[什么是适配器模式 将一个类的接口转换成客户希望的另外一个接口。adapter就是将原本由于接口不兼容而不能一起工作的类可以在一起工作。 模式中的角色 目标接口（target）:客户所期待的接口，目标可以是具体的或者抽象的类，也可以是接口 需要适配的类（adaptee）：需要适配的类或适配者类 适配器（adapter）:通过报纸一个需要的适配的对象，把原接口转换成目标接口。 实例解析我们日常生活中用到适配器的情况其实很多，比如说，我们有一个可以适配台式机的键盘（PS/2），当我们想同样用在笔记本电脑上（USB），那我们就需要一个转接器，这个时候，我们的目标接口就是笔记本电脑(USB接口)，而我们需要适配的类就是键盘（PS/2）,适配器就是我们的转接器。下面，我们来用代码解析一下。 代码解析12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364/** * 目标接口 * USB */public interface Target &#123; void handleRequest();&#125;/** * 需要适配的类 * （相当于例子中的，PS/2键盘） */public class Adaptee &#123; public void request()&#123; System.out.println("可以实现客户需求功能 "); &#125;&#125;/** * 适配器 * （相当于user和ps/2转接器） */public class Adapter implements Target&#123; private Adaptee adaptee; @Override public void handleRequest() &#123; adaptee.request(); &#125; public Adapter(Adaptee adaptee) &#123; super(); this.adaptee = adaptee; &#125;&#125;/** * 客户端类 * （相当于例子中的笔记本，只有USB接口） */public class Client &#123; public void test1 (Target t)&#123; t.handleRequest(); &#125; public static void main(String[] args) &#123; Client c = new Client(); Adaptee a = new Adaptee(); Target t = new Adapter(a); t.handleRequest(); &#125;&#125; 工作中的场景 经常用来做旧系统改造和升级 如果我们的系统开发后再也不需要维护，那么很多模式都是没必要的，但不幸的是，事实确实维护一个系统的代价往往是开发一个系统的数倍 我们学习中见过的场景 java.io.InputStreamReader(InputStream) java.io.OutputStreamWriter(OutputStream) 注：该博文为学习总结，视频来源为高淇java300集]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一路走来]]></title>
     <url>%2F2018%2F08%2F17%2F%E9%9A%8F%E4%BE%BF%E5%8F%A8%E5%8F%A8%2F%E4%B8%80%E8%B7%AF%E8%B5%B0%E6%9D%A5%2F</url>
     <content type="text"><![CDATA[初入坑2013年夏，糊里糊涂的就选了计算机专业，这对于高中计算机课作业都头疼的人来说，绝不是一个好的消息。颓废度日或许是日后的选择。“无奈”初入校门的第一堂C语言课，就遇到系里“有名”的严格老师。“被迫”之下，愉快的开始了编程史~~ 负增长过了初始敲出一段代码，兴奋到不行的阶段，兴趣开始负增长。仅剩下的一点学习的动力，大概也是为了获取给同学解决bug，被称赞时的荣耀感。 初入行怀揣着学校里获取的荣耀感，打算“大杀四方”，却无奈妥协，却依然未认清自己。没有了学校里的被动学习状态，简直是放飞自我。而且一再的自我感觉良好。直到，之前以为“志同道合”的小伙伴获取了一份不错的offer。决定开始自主学习。 拖延症+焦虑症了解的越多，才知道自己懂的太少。焦虑症病发，伴随着拖延症接踵而来。想学习，需要学的东西太多，先学什么？如同瞎子摸鱼。之后就不了了之。 觉悟季+打卡季另一个志同道合的小伙伴也走了，去寻找更好的未来。开始有些觉悟，决心踏踏实实沉下心来，一步一步走。利用空闲时间，学东西，撸代码，写博客。 代码之悟越来越开始注重代码的质量，写一段好的代码，就如同写一份优雅文章。 博客之悟 从刚开始的不会就百度，之后就忘记。 到后来的百度后记录，却知其然不知其所以然。 再之后，知其然，也之其所以然，却仅仅只是知道，却无法完美的表述。看似自己写的博客，面面俱到，却只是徒有其表。 之后目标，一篇好的文章，需要字字斟酌，浅显易懂。不仅要让自己看懂，也要让别人看懂。 未来之路希望志同道合的小伙伴们会一直志同道合，而不是在某个瞬间，被甩远，到最后，只剩下仰望。 To Lao Wang , Lao Nan]]></content>
@@ -71,8 +82,8 @@
         <category>Java基础</category>
       </categories>
       <tags>
-        <tag>注解</tag>
         <tag>java</tag>
+        <tag>注解</tag>
       </tags>
   </entry>
   <entry>
