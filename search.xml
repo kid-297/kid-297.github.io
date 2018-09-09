@@ -3,7 +3,13 @@
   <entry>
     <title><![CDATA[设计模式GOF23--中介模式]]></title>
     <url>%2F2018%2F09%2F09%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[场景 在实际的公司运营中，都有一个总经理来协调管理各个部门。那么这里的总经理起到中介、协调的作用。这是一个典型的中介者模式 核心 如果一个系统中对象之间的联系呈现为网状结构，对象之间存在大量 多对多关系，将导致关系及其复杂，这些对象称之为同事对象 我们可以引用一个中介者对象，使各个同时对象只跟中介者对象打交道，将复杂的网络结构化解为星形结构 结构图 代码解析我们通过模拟公司日常运营中，总经理和各个部门之间处理事情场景，来用代码实现中介者模式 定义同事类（部门接口和具体部门）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889/** * 同事类接口 */public interface Department &#123; /** * 做本部门的事情 */ void selfAction(); /** * 向总经理发出申请 */ void outAction();&#125;/** * 研发部 */public class Development implements Department &#123; private Mediator m; //持有中介者（总经理）的引用 public Development(Mediator m) &#123; super(); this.m = m; //当前部门注册到中介者中 m.register("development",this); &#125; @Override public void outAction() &#123; System.out.println("汇报工作！没钱了，需要资金支持！"); &#125; @Override public void selfAction() &#123; System.out.println("专心科研，开发项目！"); &#125;&#125;/** * 财务部 */public class Finacial implements Department &#123; private Mediator m; //持有中介者（总经理）的引用 public Finacial(Mediator m) &#123; super(); this.m = m; //当前部门注册到中介者中 m.register("finacial",this); &#125; @Override public void outAction() &#123; System.out.println("汇报工作！钱太多了，怎么花！"); &#125; @Override public void selfAction() &#123; System.out.println("数钱！"); &#125;&#125;/** * 市场部 */public class Market implements Department &#123; private Mediator m; //持有中介者（总经理）的引用 public Market(Mediator m) &#123; super(); this.m = m; //当前部门注册到中介者中 m.register("market",this); &#125; @Override public void outAction() &#123; System.out.println("汇报工作！项目承接的进度，需要资金支持！"); //调用财务部 m.command("finacial"); &#125; @Override public void selfAction() &#123; System.out.println("跑项目！"); &#125;&#125; 中介者（总经理接口和具体实现）1234567891011121314151617181920212223242526272829303132333435/** *中介者 */public interface Mediator &#123; /** * * @param dname 部门名称 * @param department 同事类 */ void register(String dname,Department department); /** * 发出命令 * @param dname */ void command(String dname);&#125;/** * 总经理 */public class President implements Mediator&#123; private Map&lt;String,Department&gt; map = new HashMap&lt;&gt;(); @Override public void register(String dname, Department department) &#123; map.put(dname,department); &#125; @Override public void command(String dname) &#123; map.get(dname).selfAction(); &#125;&#125; 调用123456789101112public class Client &#123; public static void main(String[] args) &#123; Mediator m = new President(); Market market = new Market(m); Development department = new Development(m); Finacial finacial = new Finacial(m); market.selfAction(); market.outAction(); &#125;&#125; 结果： 跑项目！ 汇报工作！项目承接的进度，需要资金支持！ 数钱！ 中介者模式的本质 解耦多个同事对象之间的交互关系。每个对象都持有中介者对象的引用，只跟中介者对象打交道。我们通过中介者对象统一管理这些交互关系 开发中常见的场景： MVC模式（其中的C，控制器就是一个中介者对象。M和V都和他打交道） 窗口游戏程序，窗口软件开发中窗口对象也是一个中介者对象 图形界面开发GUI中，多个组件之间的交互，可以通过引入一个中介者对象来解决，可以使整体的窗口对象或者DOM对象 java.lang.reflect.Method#invoke() 注：该博文为学习总结，视频来源为高淇java300集]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[触发器 -- mysql触发器]]></title>
@@ -179,6 +185,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java基础--注解]]></title>
+    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>注解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[java基础--反射]]></title>
     <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E5%8F%8D%E5%B0%84%2F</url>
     <content type="text"><![CDATA[什么是反射：java通常是先有类再有对象，有对象我就可以调用方法或者属性。反射其实是通过Class对象来调用类里面的方法。通过反射可以调用私有方法和私有属性。大部分框架都是运用反射原理。 反射的作用：动态的加载类和类中的信息 反射小例子：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384@SuppressWarnings("all")public class ReflexTestDemo &#123; public static void main(String[] args)&#123; String path = "com.tfs.test.User"; User user = new User(); try &#123; //一、获取对象的方式 Class&lt;User&gt; cl1 = (Class&lt;User&gt;) Class.forName(path); Class cl2 = User.class; Class cl3 = user.getClass(); System.out.println(cl1.hashCode() == cl2.hashCode()); //true System.out.println(cl1.hashCode() == cl3.hashCode()); //true //二、获取并使用对象内置信息 //1.获取名称 System.out.println(cl1.getName()); //com.tfs.test.User System.out.println(cl1.getSimpleName()); //User //2.获取并使用属性 Field[] fields = cl1.getFields(); //只能获取public的 Field[] fields1 = cl1.getDeclaredFields(); //获取全部的 Field field = cl1.getDeclaredField("name"); //根据名字获取 User u2 = cl1.newInstance(); //利用反射获取默认构造方法 field.setAccessible(true); //设置后可以不用进行安全检测，提高性能 field.set(u2,"kid"); //给name属性赋值kid System.out.println(field.get(u2)); //输出：kid //3.获取并使用普通方法 Method method = cl1.getDeclaredMethod("setName", String.class); //参数：方法名，方法参数 User u3 = cl1.newInstance(); method.invoke(u3,"kid"); //等同于 u3.setName("kid"); 方法 System.out.println(u3.getName()); //输出：kid //4.获取并使用构造方法 Constructor constructor1 = cl1.getDeclaredConstructor(); //获取无参构造方法 Constructor constructor2 = cl1.getDeclaredConstructor(int.class,String.class); //获取有参构造方法 User u4 = (User) constructor2.newInstance(1008,"kid"); //调用该方法并传参 System.out.println(u4.getName()); //输出：null 所以该方法只是调用了有参的构造函数，并未真正的传参 &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125;&#125;/** * @Description:被调用的User类 * @Author:kid * @Date: 2018/3/26 16:17 * @ISDELETE: NO */public class User &#123; public int id; String name; public int getId() &#123; return id; &#125; public void setId(int id) &#123; this.id = id; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; public User()&#123; &#125; public User(int id,String name)&#123; &#125; 反射性能反射的会影响运行的速度，但是在开发中，有一些地方还是会需要反射。那么如何解决这个问题呢？经测验：在同时循环执行一个方法的时候，反射会比普通的方法慢很多。如将setAccessible设置为true，减少安全检测，将提升4倍的效率。]]></content>
@@ -188,18 +206,6 @@
       <tags>
         <tag>java</tag>
         <tag>反射</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[java基础--注解]]></title>
-    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>注解</tag>
-        <tag>java</tag>
       </tags>
   </entry>
   <entry>

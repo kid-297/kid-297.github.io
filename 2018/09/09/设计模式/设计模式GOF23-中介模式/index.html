@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="君子生非异也，善假于物也。">
+<meta name="description" content="场景 在实际的公司运营中，都有一个总经理来协调管理各个部门。那么这里的总经理起到中介、协调的作用。这是一个典型的中介者模式">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式GOF23--中介模式">
 <meta property="og:url" content="http://yoursite.com/2018/09/09/设计模式/设计模式GOF23-中介模式/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="君子生非异也，善假于物也。">
+<meta property="og:description" content="场景 在实际的公司运营中，都有一个总经理来协调管理各个部门。那么这里的总经理起到中介、协调的作用。这是一个典型的中介者模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-09T10:59:51.643Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/09/设计模式/设计模式GOF23-中介模式/结构图.png">
+<meta property="og:updated_time" content="2018-09-09T11:03:51.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式GOF23--中介模式">
-<meta name="twitter:description" content="君子生非异也，善假于物也。">
+<meta name="twitter:description" content="场景 在实际的公司运营中，都有一个总经理来协调管理各个部门。那么这里的总经理起到中介、协调的作用。这是一个典型的中介者模式">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/09/设计模式/设计模式GOF23-中介模式/结构图.png">
 
 
 
@@ -292,6 +295,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -319,7 +344,34 @@
       
 
       
-        
+        <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><ul>
+<li>在实际的公司运营中，都有一个总经理来协调管理各个部门。那么这里的总经理起到中介、协调的作用。这是一个典型的中介者模式</li>
+</ul>
+<a id="more"></a>
+<h1 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h1><ul>
+<li>如果一个系统中对象之间的联系呈现为网状结构，对象之间存在大量 多对多关系，将导致关系及其复杂，这些对象称之为同事对象</li>
+<li>我们可以引用一个中介者对象，使各个同时对象只跟中介者对象打交道，将复杂的网络结构化解为星形结构</li>
+</ul>
+<h1 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h1><img src="/2018/09/09/设计模式/设计模式GOF23-中介模式/结构图.png">
+<h1 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h1><p>我们通过模拟公司日常运营中，总经理和各个部门之间处理事情场景，来用代码实现中介者模式</p>
+<h2 id="定义同事类（部门接口和具体部门）"><a href="#定义同事类（部门接口和具体部门）" class="headerlink" title="定义同事类（部门接口和具体部门）"></a>定义同事类（部门接口和具体部门）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 同事类接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 做本部门的事情</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">selfAction</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 向总经理发出申请</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">outAction</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 研发部</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Development</span> <span class="keyword">implements</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Mediator m; <span class="comment">//持有中介者（总经理）的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Development</span><span class="params">(Mediator m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.m = m;</span><br><span class="line">        <span class="comment">//当前部门注册到中介者中</span></span><br><span class="line">        m.register(<span class="string">"development"</span>,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">outAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汇报工作！没钱了，需要资金支持！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"专心科研，开发项目！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 财务部</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Finacial</span> <span class="keyword">implements</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Mediator m; <span class="comment">//持有中介者（总经理）的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Finacial</span><span class="params">(Mediator m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.m = m;</span><br><span class="line">        <span class="comment">//当前部门注册到中介者中</span></span><br><span class="line">        m.register(<span class="string">"finacial"</span>,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">outAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汇报工作！钱太多了，怎么花！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"数钱！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 市场部</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Market</span> <span class="keyword">implements</span> <span class="title">Department</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Mediator m; <span class="comment">//持有中介者（总经理）的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Market</span><span class="params">(Mediator m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.m = m;</span><br><span class="line">        <span class="comment">//当前部门注册到中介者中</span></span><br><span class="line">        m.register(<span class="string">"market"</span>,<span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">outAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"汇报工作！项目承接的进度，需要资金支持！"</span>);</span><br><span class="line">        <span class="comment">//调用财务部</span></span><br><span class="line">        m.command(<span class="string">"finacial"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selfAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"跑项目！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="中介者（总经理接口和具体实现）"><a href="#中介者（总经理接口和具体实现）" class="headerlink" title="中介者（总经理接口和具体实现）"></a>中介者（总经理接口和具体实现）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *中介者</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Mediator</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dname  部门名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> department  同事类</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">register</span><span class="params">(String dname,Department department)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 发出命令</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> dname</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">command</span><span class="params">(String dname)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 总经理</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">President</span> <span class="keyword">implements</span> <span class="title">Mediator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String,Department&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">(String dname, Department department)</span> </span>&#123;</span><br><span class="line">        map.put(dname,department);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">command</span><span class="params">(String dname)</span> </span>&#123;</span><br><span class="line">        map.get(dname).selfAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Mediator m = <span class="keyword">new</span> President();</span><br><span class="line"></span><br><span class="line">        Market market = <span class="keyword">new</span> Market(m);</span><br><span class="line">        Development department = <span class="keyword">new</span> Development(m);</span><br><span class="line">        Finacial finacial = <span class="keyword">new</span> Finacial(m);</span><br><span class="line"></span><br><span class="line">        market.selfAction();</span><br><span class="line">        market.outAction();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>结果：
+跑项目！
+汇报工作！项目承接的进度，需要资金支持！
+数钱！
+</code></pre><h1 id="中介者模式的本质"><a href="#中介者模式的本质" class="headerlink" title="中介者模式的本质"></a>中介者模式的本质</h1><ul>
+<li>解耦多个同事对象之间的交互关系。每个对象都持有中介者对象的引用，只跟中介者对象打交道。我们通过中介者对象统一管理这些交互关系</li>
+</ul>
+<h1 id="开发中常见的场景："><a href="#开发中常见的场景：" class="headerlink" title="开发中常见的场景："></a>开发中常见的场景：</h1><ul>
+<li>MVC模式（其中的C，控制器就是一个中介者对象。M和V都和他打交道）</li>
+<li>窗口游戏程序，窗口软件开发中窗口对象也是一个中介者对象</li>
+<li>图形界面开发GUI中，多个组件之间的交互，可以通过引入一个中介者对象来解决，可以使整体的窗口对象或者DOM对象</li>
+<li>java.lang.reflect.Method#invoke()</li>
+</ul>
+<pre><code>注：该博文为学习总结，视频来源为高淇java300集
+</code></pre>
       
     </div>
     
@@ -333,6 +385,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
       
 
       
@@ -403,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -478,6 +545,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心"><span class="nav-number">2.</span> <span class="nav-text">核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构图"><span class="nav-number">3.</span> <span class="nav-text">结构图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码解析"><span class="nav-number">4.</span> <span class="nav-text">代码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义同事类（部门接口和具体部门）"><span class="nav-number">4.1.</span> <span class="nav-text">定义同事类（部门接口和具体部门）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中介者（总经理接口和具体实现）"><span class="nav-number">4.2.</span> <span class="nav-text">中介者（总经理接口和具体实现）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number">4.3.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中介者模式的本质"><span class="nav-number">5.</span> <span class="nav-text">中介者模式的本质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发中常见的场景："><span class="nav-number">6.</span> <span class="nav-text">开发中常见的场景：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
