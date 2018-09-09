@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设计模式GOF23--中介模式]]></title>
+    <url>%2F2018%2F09%2F09%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E4%B8%AD%E4%BB%8B%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[触发器 -- mysql触发器]]></title>
     <url>%2F2018%2F09%2F07%2F%E6%95%B0%E6%8D%AE%E5%BA%93%2F%E8%A7%A6%E5%8F%91%E5%99%A8-mysql%E8%A7%A6%E5%8F%91%E5%99%A8%2F</url>
     <content type="text"><![CDATA[mysql 触发器创建触发器在MySQL中，创建触发器语法如下： 代码如下: 123456CREATE TRIGGER trigger_nametrigger_timetrigger_event ON tbl_nameFOR EACH ROWtrigger_stmt 其中： trigger_name：标识触发器名称，用户自行指定； trigger_time：标识触发时机，取值为 BEFORE 或 AFTER； trigger_event：标识触发事件，取值为 INSERT、UPDATE 或 DELETE； tbl_name：标识建立触发器的表名，即在哪张表上建立触发器； trigger_stmt：触发器程序体，可以是一句SQL语句，或者用 BEGIN 和 END 包含的多条语句。 由此可见，可以建立6种触发器，即：BEFORE INSERT、BEFORE UPDATE、BEFORE DELETE、AFTER INSERT、AFTER UPDATE、AFTER DELETE。 另外有一个限制是不能同时在一个表上建立2个相同类型的触发器，因此在一个表上最多建立6个触发器。 实例根据实际项目需求，模拟一个表中的其中一个字段变化，在另一个表中添加一个对应的记录. 创建表test1 1234567CREATE TABLE `test1` ( `id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(255) DEFAULT NULL, `pwd` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8; 创建表test2 1234567CREATE TABLE `test2` ( `id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(255) DEFAULT NULL, `asd` varchar(255) DEFAULT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8; 创建名字为test_name的触发器，当表test1中的pwd字段变为222的时候，会触发触发器在test2表中，插入一条数据；（old，new为关键字） 123456789DELIMITER $CREATE TRIGGER test_name AFTER UPDATE ON test1 FOR EACH ROWBEGINIF new.pwd = '222' THEN INSERT INTO test2 (name) SELECT name from test1 where id = old.id;END IF; END $DELIMITER ; 附录BEGIN … END 详解在MySQL中，BEGIN … END 语句的语法为： BEGIN[statement_list]END其中，statement_list 代表一个或多个语句的列表，列表内的每条语句都必须用分号（;）来结尾。而在MySQL中，分号是语句结束的标识符，遇到分号表示该段语句已经结束，MySQL可以开始执行了。因此，解释器遇到statement_list 中的分号后就开始执行，然后会报出错误，因为没有找到和 BEGIN 匹配的 END。 这时就会用到 DELIMITER 命令（DELIMITER 是定界符，分隔符的意思），它是一条命令，不需要语句结束标识，语法为：DELIMITER new_delemiternew_delemiter 可以设为1个或多个长度的符号，默认的是分号（;），我们可以把它修改为其他符号，如$：DELIMITER $在这之后的语句，以分号结束，解释器不会有什么反应，只有遇到了$，才认为是语句结束。注意，使用完之后，我们还应该记得把它给修改回来。 变量详解MySQL 中使用 DECLARE 来定义一局部变量，该变量只能在 BEGIN … END 复合语句中使用，并且应该定义在复合语句的开头， 即其它语句之前，语法如下： DECLARE var_name[,…] type [DEFAULT value]其中：var_name 为变量名称，同 SQL 语句一样，变量名不区分大小写；type 为 MySQL 支持的任何数据类型；可以同时定义多个同类型的变量，用逗号隔开；变量初始值为 NULL，如果需要，可以使用 DEFAULT 子句提供默认值，值可以被指定为一个表达式。 对变量赋值采用 SET 语句，语法为： SET var_name = expr [,var_name = expr] … NEW 与 OLD 详解上述示例中使用了NEW关键字，和 MS SQL Server 中的 INSERTED 和 DELETED 类似，MySQL 中定义了 NEW 和 OLD，用来表示 触发器的所在表中，触发了触发器的那一行数据。具体地：在 INSERT 型触发器中，NEW 用来表示将要（BEFORE）或已经（AFTER）插入的新数据；在 UPDATE 型触发器中，OLD 用来表示将要或已经被修改的原数据，NEW 用来表示将要或已经修改为的新数据；在 DELETE 型触发器中，OLD 用来表示将要或已经被删除的原数据；使用方法： NEW.columnName （columnName 为相应数据表某一列名）另外，OLD 是只读的，而 NEW 则可以在触发器中使用 SET 赋值，这样不会再次触发触发器，造成循环调用（如每插入一个学生前，都在其学号前加“2013”）。 查看触发器和查看数据库（show databases;）查看表格（show tables;）一样，查看触发器的语法如下： SHOW TRIGGERS [FROM schema_name];其中，schema_name 即 Schema 的名称，在 MySQL 中 Schema 和 Database 是一样的，也就是说，可以指定数据库名，这样就 不必先“USE database_name;”了。 删除触发器和删除数据库、删除表格一样，删除触发器的语法如下： DROP TRIGGER [IF EXISTS] [schema_name.]trigger_name 触发器的执行顺序我们建立的数据库一般都是 InnoDB 数据库，其上建立的表是事务性表，也就是事务安全的。这时，若SQL语句或触发器执行失败，MySQL 会回滚事务，有： ①如果 BEFORE 触发器执行失败，SQL 无法正确执行。 ②SQL 执行失败时，AFTER 型触发器不会触发。 ③AFTER 类型的触发器执行失败，SQL 会回滚 本文大部分内容选自：MySQL触发器使用详解]]></content>
@@ -174,18 +179,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[java基础--注解]]></title>
-    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>注解</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[java基础--反射]]></title>
     <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E5%8F%8D%E5%B0%84%2F</url>
     <content type="text"><![CDATA[什么是反射：java通常是先有类再有对象，有对象我就可以调用方法或者属性。反射其实是通过Class对象来调用类里面的方法。通过反射可以调用私有方法和私有属性。大部分框架都是运用反射原理。 反射的作用：动态的加载类和类中的信息 反射小例子：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384@SuppressWarnings("all")public class ReflexTestDemo &#123; public static void main(String[] args)&#123; String path = "com.tfs.test.User"; User user = new User(); try &#123; //一、获取对象的方式 Class&lt;User&gt; cl1 = (Class&lt;User&gt;) Class.forName(path); Class cl2 = User.class; Class cl3 = user.getClass(); System.out.println(cl1.hashCode() == cl2.hashCode()); //true System.out.println(cl1.hashCode() == cl3.hashCode()); //true //二、获取并使用对象内置信息 //1.获取名称 System.out.println(cl1.getName()); //com.tfs.test.User System.out.println(cl1.getSimpleName()); //User //2.获取并使用属性 Field[] fields = cl1.getFields(); //只能获取public的 Field[] fields1 = cl1.getDeclaredFields(); //获取全部的 Field field = cl1.getDeclaredField("name"); //根据名字获取 User u2 = cl1.newInstance(); //利用反射获取默认构造方法 field.setAccessible(true); //设置后可以不用进行安全检测，提高性能 field.set(u2,"kid"); //给name属性赋值kid System.out.println(field.get(u2)); //输出：kid //3.获取并使用普通方法 Method method = cl1.getDeclaredMethod("setName", String.class); //参数：方法名，方法参数 User u3 = cl1.newInstance(); method.invoke(u3,"kid"); //等同于 u3.setName("kid"); 方法 System.out.println(u3.getName()); //输出：kid //4.获取并使用构造方法 Constructor constructor1 = cl1.getDeclaredConstructor(); //获取无参构造方法 Constructor constructor2 = cl1.getDeclaredConstructor(int.class,String.class); //获取有参构造方法 User u4 = (User) constructor2.newInstance(1008,"kid"); //调用该方法并传参 System.out.println(u4.getName()); //输出：null 所以该方法只是调用了有参的构造函数，并未真正的传参 &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125;&#125;/** * @Description:被调用的User类 * @Author:kid * @Date: 2018/3/26 16:17 * @ISDELETE: NO */public class User &#123; public int id; String name; public int getId() &#123; return id; &#125; public void setId(int id) &#123; this.id = id; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; public User()&#123; &#125; public User(int id,String name)&#123; &#125; 反射性能反射的会影响运行的速度，但是在开发中，有一些地方还是会需要反射。那么如何解决这个问题呢？经测验：在同时循环执行一个方法的时候，反射会比普通的方法慢很多。如将setAccessible设置为true，减少安全检测，将提升4倍的效率。]]></content>
@@ -195,6 +188,18 @@
       <tags>
         <tag>java</tag>
         <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java基础--注解]]></title>
+    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>注解</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
