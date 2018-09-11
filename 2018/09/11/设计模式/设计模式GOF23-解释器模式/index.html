@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="君子生非异也，善假于物也。">
+<meta name="description" content="介绍 是一种不常用的设计模式 用于描述如何构成一个简单的语言解释器，主要用于使用面向对象语言开发的编译器和解释器设计 当我们需要开发一种新的语言时，可以考虑使用解释器模式 尽量不要使用解释器模式，后期维护会有很大的麻烦。在项目中，可以使用Jruby,Groovy,java的js引擎来替代解释器的作用，弥补Java语言的不足">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式GOF23--解释器模式">
 <meta property="og:url" content="http://yoursite.com/2018/09/11/设计模式/设计模式GOF23-解释器模式/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="君子生非异也，善假于物也。">
+<meta property="og:description" content="介绍 是一种不常用的设计模式 用于描述如何构成一个简单的语言解释器，主要用于使用面向对象语言开发的编译器和解释器设计 当我们需要开发一种新的语言时，可以考虑使用解释器模式 尽量不要使用解释器模式，后期维护会有很大的麻烦。在项目中，可以使用Jruby,Groovy,java的js引擎来替代解释器的作用，弥补Java语言的不足">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-11T13:55:22.832Z">
+<meta property="og:updated_time" content="2018-09-11T14:22:51.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式GOF23--解释器模式">
-<meta name="twitter:description" content="君子生非异也，善假于物也。">
+<meta name="twitter:description" content="介绍 是一种不常用的设计模式 用于描述如何构成一个简单的语言解释器，主要用于使用面向对象语言开发的编译器和解释器设计 当我们需要开发一种新的语言时，可以考虑使用解释器模式 尽量不要使用解释器模式，后期维护会有很大的麻烦。在项目中，可以使用Jruby,Groovy,java的js引擎来替代解释器的作用，弥补Java语言的不足">
 
 
 
@@ -292,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -319,7 +342,22 @@
       
 
       
-        
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li>是一种不常用的设计模式</li>
+<li>用于描述如何构成一个简单的语言解释器，主要用于使用面向对象语言开发的编译器和解释器设计</li>
+<li>当我们需要开发一种新的语言时，可以考虑使用解释器模式</li>
+<li>尽量不要使用解释器模式，后期维护会有很大的麻烦。在项目中，可以使用Jruby,Groovy,java的js引擎来替代解释器的作用，弥补Java语言的不足<a id="more"></a>
+</li>
+</ul>
+<h1 id="开发中常见的场景"><a href="#开发中常见的场景" class="headerlink" title="开发中常见的场景"></a>开发中常见的场景</h1><ul>
+<li>EL表达式的处理</li>
+<li>正则表达式解析器</li>
+<li>sql语法的解析器</li>
+<li><p>数学表达式的解析器</p>
+<p>  注：该博文为学习总结，视频来源为高淇java300集</p>
+</li>
+</ul>
+
       
     </div>
     
@@ -333,6 +371,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+        </div>
       
 
       
@@ -407,8 +451,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发中常见的场景"><span class="nav-number">2.</span> <span class="nav-text">开发中常见的场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
