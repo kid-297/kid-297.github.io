@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[设计模式GOF23--状态模式]]></title>
+    <url>%2F2018%2F09%2F26%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[场景 电梯的运行 维修、正常、自动关门、自动开门、向上运行、向下运行、消防状态 红绿灯 红灯、黄灯、绿灯 企业或政府系统 公文的审批状态 报销单据审批状态 假条审批 网上购物，订单的状态 酒店系统中，房间的状态变化： 已预定 已入住 空闲 核心 用于解决系统中复杂对象的状态转换以及不同状态下行为的封装问题 结构 Context环境类 环境类中维护一个State对象，他是定义了当前的状态 State抽象状态类 ConcreteState具体状态类 每一个类封装了一个状态对应的行为 不使用设计模式解决$ 代码解析（酒店系统模型）123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354/** * 抽象状态类 */public interface State &#123; void handle();&#125;/** * 房间空闲 */public class FreeState implements State&#123; @Override public void handle() &#123; System.out.println("房间空闲，没人住"); &#125;&#125;/** * 已入住 */public class CheckedInState implements State&#123; @Override public void handle() &#123; System.out.println("房间已入住"); &#125;&#125;/** * 已预定 */public class BookedState implements State&#123; @Override public void handle() &#123; System.out.println("房间已预定"); &#125;&#125;/** * 环境类 */public class Context &#123; private State state; public void setState(State state) &#123; System.out.println("修改状态"); this.state = state; state.handle(); &#125;&#125;/** * 状态模式 */public class Client &#123; public static void main(String[] args) &#123; Context ctx = new Context(); ctx.setState(new FreeState()); &#125;&#125; 开发中常见的场景 银行系统中账号状态的管理 OA系统中公文状态的管理 酒店系统中，房间状态的管理 线程对象各个状态之间的切换 注：该博文为学习总结，视频来源为高淇java300集]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[设计模式GOF23--模板方法模式]]></title>
     <url>%2F2018%2F09%2F18%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%2F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8FGOF23-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[场景 客户到银行办理业务： 取号排队 办理具体现金/转账/企业/个人/理财业务 给银行工作人员评分 模板方法模式介绍 模板方法模式是编程中经常用到的模式。它定义了一个操作中的算法骨架，将某些步骤延迟到子类中实现。这样，新的子类可以在不改变一个算法结构的前提下重新定义该算法的某些特定步骤。 核心 处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用工厂方法模式，将这个节点的代码实现转移给子类完成。即：处理步骤父类中定义好，具体实现延迟到子类中定义 代码实现（银行办理业务）模板方法12345678910111213141516171819202122public abstract class BankTeplateMethod &#123; public void takeNumber()&#123; System.out.println("排队取号"); &#125; public abstract void transact(); //办理具体的业务 //钩子方法 public void evaluate()&#123; System.out.println("反馈评分"); &#125; /** * 模板方法 */ public final void process()&#123; this.takeNumber(); this.transact(); this.evaluate(); &#125;&#125; 实现取款业务12345678910/** * 取款业务 */class DrawMoney extends BankTeplateMethod&#123; @Override public void transact() &#123; System.out.println("我要取款!!!"); &#125;&#125; 调用12345678910111213141516171819/** * 模板方法 */public class Client &#123; public static void main(String[] args) &#123; BankTeplateMethod btm = new DrawMoney(); btm.process(); //采用匿名内部类 BankTeplateMethod btm2 = new BankTeplateMethod() &#123; @Override public void transact() &#123; System.out.println("我要存钱！！！"); &#125; &#125;; btm2.process(); &#125;&#125; 什么时候用到模板方法模式 实现一个算法时，整体的步骤很固定。但是，某些部分易变。易变部分可以抽象出来，供子类实现 开发中常见的场景 数据库访问的分装 Junit单元测试 servlet中关于doGet/doPost方法的调用 Hibernate中模板程序 spring中JDBCTemplate、HibTemplate等。 注：该博文为学习总结，视频来源为高淇java300集]]></content>

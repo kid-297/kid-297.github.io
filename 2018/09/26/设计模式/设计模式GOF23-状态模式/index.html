@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="场景 客户到银行办理业务： 取号排队 办理具体现金/转账/企业/个人/理财业务 给银行工作人员评分">
+<meta name="description" content="场景 电梯的运行 维修、正常、自动关门、自动开门、向上运行、向下运行、消防状态   红绿灯 红灯、黄灯、绿灯   企业或政府系统 公文的审批状态 报销单据审批状态 假条审批     网上购物，订单的状态  酒店系统中，房间的状态变化：  已预定 已入住 空闲    核心 用于解决系统中复杂对象的状态转换以及不同状态下行为的封装问题  结构 Context环境类  环境类中维护一个State对象，他">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式GOF23--模板方法模式">
-<meta property="og:url" content="http://yoursite.com/2018/09/18/设计模式/设计模式GOF23-模板方法模式/index.html">
+<meta property="og:title" content="设计模式GOF23--状态模式">
+<meta property="og:url" content="http://yoursite.com/2018/09/26/设计模式/设计模式GOF23-状态模式/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="场景 客户到银行办理业务： 取号排队 办理具体现金/转账/企业/个人/理财业务 给银行工作人员评分">
+<meta property="og:description" content="场景 电梯的运行 维修、正常、自动关门、自动开门、向上运行、向下运行、消防状态   红绿灯 红灯、黄灯、绿灯   企业或政府系统 公文的审批状态 报销单据审批状态 假条审批     网上购物，订单的状态  酒店系统中，房间的状态变化：  已预定 已入住 空闲    核心 用于解决系统中复杂对象的状态转换以及不同状态下行为的封装问题  结构 Context环境类  环境类中维护一个State对象，他">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-18T12:26:17.007Z">
+<meta property="og:image" content="http://yoursite.com/2018/09/26/设计模式/设计模式GOF23-状态模式/状态模式.png">
+<meta property="og:updated_time" content="2018-09-26T13:11:26.803Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式GOF23--模板方法模式">
-<meta name="twitter:description" content="场景 客户到银行办理业务： 取号排队 办理具体现金/转账/企业/个人/理财业务 给银行工作人员评分">
+<meta name="twitter:title" content="设计模式GOF23--状态模式">
+<meta name="twitter:description" content="场景 电梯的运行 维修、正常、自动关门、自动开门、向上运行、向下运行、消防状态   红绿灯 红灯、黄灯、绿灯   企业或政府系统 公文的审批状态 报销单据审批状态 假条审批     网上购物，订单的状态  酒店系统中，房间的状态变化：  已预定 已入住 空闲    核心 用于解决系统中复杂对象的状态转换以及不同状态下行为的封装问题  结构 Context环境类  环境类中维护一个State对象，他">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/26/设计模式/设计模式GOF23-状态模式/状态模式.png">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/18/设计模式/设计模式GOF23-模板方法模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/26/设计模式/设计模式GOF23-状态模式/"/>
 
 
 
 
 
-  <title>设计模式GOF23--模板方法模式 | kid-297</title>
+  <title>设计模式GOF23--状态模式 | kid-297</title>
   
 
 
@@ -253,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/设计模式/设计模式GOF23-模板方法模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/设计模式/设计模式GOF23-状态模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kid-297">
@@ -270,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式GOF23--模板方法模式</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式GOF23--状态模式</h1>
         
 
         <div class="post-meta">
@@ -282,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T20:25:33+08:00">
-                2018-09-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T21:10:34+08:00">
+                2018-09-26
               </time>
             
 
@@ -343,32 +345,53 @@
 
       
         <h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><ul>
-<li>客户到银行办理业务：<ol>
-<li>取号排队</li>
-<li>办理具体现金/转账/企业/个人/理财业务</li>
-<li>给银行工作人员评分</li>
-</ol>
+<li>电梯的运行<ul>
+<li>维修、正常、自动关门、自动开门、向上运行、向下运行、消防状态</li>
+</ul>
+</li>
+<li>红绿灯<ul>
+<li>红灯、黄灯、绿灯</li>
+</ul>
+</li>
+<li>企业或政府系统<ul>
+<li>公文的审批状态<ul>
+<li>报销单据审批状态</li>
+<li>假条审批</li>
+</ul>
 </li>
 </ul>
-<a id="more"></a>
-<h1 id="模板方法模式介绍"><a href="#模板方法模式介绍" class="headerlink" title="模板方法模式介绍"></a>模板方法模式介绍</h1><ul>
-<li>模板方法模式是编程中经常用到的模式。它定义了一个操作中的算法骨架，将某些步骤延迟到子类中实现。这样，新的子类可以在不改变一个算法结构的前提下重新定义该算法的某些特定步骤。</li>
+</li>
+<li><p>网上购物，订单的状态</p>
+</li>
+<li><p>酒店系统中，房间的状态变化：</p>
+<ul>
+<li>已预定</li>
+<li>已入住</li>
+<li>空闲</li>
+</ul>
+</li>
 </ul>
 <h1 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h1><ul>
-<li>处理某个流程的代码已经都具备，但是其中某个节点的代码暂时不能确定。因此，我们采用工厂方法模式，将这个节点的代码实现转移给子类完成。<strong>即：处理步骤父类中定义好，具体实现延迟到子类中定义</strong></li>
+<li>用于解决系统中复杂对象的状态转换以及不同状态下行为的封装问题</li>
 </ul>
-<h1 id="代码实现（银行办理业务）"><a href="#代码实现（银行办理业务）" class="headerlink" title="代码实现（银行办理业务）"></a>代码实现（银行办理业务）</h1><h2 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">BankTeplateMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">takeNumber</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"排队取号"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span>  <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">transact</span><span class="params">()</span></span>;  <span class="comment">//办理具体的业务  //钩子方法</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">evaluate</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"反馈评分"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模板方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">process</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.takeNumber();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.transact();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.evaluate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="实现取款业务"><a href="#实现取款业务" class="headerlink" title="实现取款业务"></a>实现取款业务</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 取款业务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DrawMoney</span> <span class="keyword">extends</span> <span class="title">BankTeplateMethod</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transact</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"我要取款!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模板方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        BankTeplateMethod btm = <span class="keyword">new</span> DrawMoney();</span><br><span class="line"></span><br><span class="line">        btm.process();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//采用匿名内部类</span></span><br><span class="line">        BankTeplateMethod btm2 = <span class="keyword">new</span> BankTeplateMethod() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">transact</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"我要存钱！！！"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        btm2.process();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="什么时候用到模板方法模式"><a href="#什么时候用到模板方法模式" class="headerlink" title="什么时候用到模板方法模式"></a>什么时候用到模板方法模式</h1><ul>
-<li>实现一个算法时，整体的步骤很固定。但是，某些部分易变。易变部分可以抽象出来，供子类实现</li>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><ul>
+<li>Context环境类 <ul>
+<li>环境类中维护一个State对象，他是定义了当前的状态</li>
 </ul>
+</li>
+<li>State抽象状态类</li>
+<li>ConcreteState具体状态类<ul>
+<li>每一个类封装了一个状态对应的行为</li>
+</ul>
+</li>
+</ul>
+<h1 id="不使用设计模式解决"><a href="#不使用设计模式解决" class="headerlink" title="不使用设计模式解决"></a>不使用设计模式解决</h1><p>$<img src="/2018/09/26/设计模式/设计模式GOF23-状态模式/状态模式.png"></p>
+<h1 id="代码解析（酒店系统模型）"><a href="#代码解析（酒店系统模型）" class="headerlink" title="代码解析（酒店系统模型）"></a>代码解析（酒店系统模型）</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 抽象状态类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">State</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">handle</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 房间空闲</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FreeState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"房间空闲，没人住"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 已入住</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckedInState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"房间已入住"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 已预定</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookedState</span> <span class="keyword">implements</span> <span class="title">State</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"房间已预定"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 环境类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> State state;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setState</span><span class="params">(State state)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"修改状态"</span>);</span><br><span class="line">        <span class="keyword">this</span>.state = state;</span><br><span class="line">        state.handle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 状态模式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Context ctx = <span class="keyword">new</span> Context();</span><br><span class="line">        ctx.setState(<span class="keyword">new</span> FreeState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="开发中常见的场景"><a href="#开发中常见的场景" class="headerlink" title="开发中常见的场景"></a>开发中常见的场景</h1><ul>
-<li>数据库访问的分装</li>
-<li>Junit单元测试</li>
-<li>servlet中关于doGet/doPost方法的调用</li>
-<li>Hibernate中模板程序</li>
-<li>spring中JDBCTemplate、HibTemplate等。</li>
+<li>银行系统中账号状态的管理</li>
+<li>OA系统中公文状态的管理</li>
+<li>酒店系统中，房间状态的管理</li>
+<li>线程对象各个状态之间的切换</li>
 </ul>
 <pre><code>注：该博文为学习总结，视频来源为高淇java300集
 </code></pre>
@@ -401,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/12/设计模式/设计模式GOF23-策略模式/" rel="next" title="设计模式GOF23--策略模式">
-                <i class="fa fa-chevron-left"></i> 设计模式GOF23--策略模式
+              <a href="/2018/09/18/设计模式/设计模式GOF23-模板方法模式/" rel="next" title="设计模式GOF23--模板方法模式">
+                <i class="fa fa-chevron-left"></i> 设计模式GOF23--模板方法模式
               </a>
             
           </div>
@@ -410,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/26/设计模式/设计模式GOF23-状态模式/" rel="prev" title="设计模式GOF23--状态模式">
-                设计模式GOF23--状态模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板方法模式介绍"><span class="nav-number">2.</span> <span class="nav-text">模板方法模式介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心"><span class="nav-number">3.</span> <span class="nav-text">核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现（银行办理业务）"><span class="nav-number">4.</span> <span class="nav-text">代码实现（银行办理业务）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法"><span class="nav-number">4.1.</span> <span class="nav-text">模板方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现取款业务"><span class="nav-number">4.2.</span> <span class="nav-text">实现取款业务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用"><span class="nav-number">4.3.</span> <span class="nav-text">调用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么时候用到模板方法模式"><span class="nav-number">5.</span> <span class="nav-text">什么时候用到模板方法模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发中常见的场景"><span class="nav-number">6.</span> <span class="nav-text">开发中常见的场景</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#核心"><span class="nav-number">2.</span> <span class="nav-text">核心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结构"><span class="nav-number">3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不使用设计模式解决"><span class="nav-number">4.</span> <span class="nav-text">不使用设计模式解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码解析（酒店系统模型）"><span class="nav-number">5.</span> <span class="nav-text">代码解析（酒店系统模型）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发中常见的场景"><span class="nav-number">6.</span> <span class="nav-text">开发中常见的场景</span></a></li></ol></div>
             
 
           </div>
