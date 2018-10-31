@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="注解,java," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="注解  什么叫做注解？注解-&amp;gt;Annotation，JDK5.0引入技术 Annotation 的作用：   并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理）">
-<meta name="keywords" content="注解,java">
+<meta name="description" content="接口和内部类为我们提供了一种将接口与现实分离的更加结构化的方法">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java基础--注解">
-<meta property="og:url" content="http://yoursite.com/2018/03/26/Java基础/java基础--注解/index.html">
+<meta property="og:title" content="Java编程思想读书笔记--第九章 接口">
+<meta property="og:url" content="http://yoursite.com/2018/10/31/读书笔记/java编程思想/Java编程思想读书笔记-第九章-接口/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="注解  什么叫做注解？注解-&amp;gt;Annotation，JDK5.0引入技术 Annotation 的作用：   并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理）">
+<meta property="og:description" content="接口和内部类为我们提供了一种将接口与现实分离的更加结构化的方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T10:42:35.656Z">
+<meta property="og:updated_time" content="2018-10-31T13:35:34.550Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java基础--注解">
-<meta name="twitter:description" content="注解  什么叫做注解？注解-&amp;gt;Annotation，JDK5.0引入技术 Annotation 的作用：   并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理）">
+<meta name="twitter:title" content="Java编程思想读书笔记--第九章 接口">
+<meta name="twitter:description" content="接口和内部类为我们提供了一种将接口与现实分离的更加结构化的方法">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/03/26/Java基础/java基础--注解/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/31/读书笔记/java编程思想/Java编程思想读书笔记-第九章-接口/"/>
 
 
 
 
 
-  <title>java基础--注解 | kid-297</title>
+  <title>Java编程思想读书笔记--第九章 接口 | kid-297</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/26/Java基础/java基础--注解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/读书笔记/java编程思想/Java编程思想读书笔记-第九章-接口/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="kid-297">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java基础--注解</h1>
+          <h1 class="post-title" itemprop="name headline">Java编程思想读书笔记--第九章 接口</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T11:17:21+08:00">
-                2018-03-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-31T21:34:37+08:00">
+                2018-10-31
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java基础/" itemprop="url" rel="index">
-                    <span itemprop="name">Java基础</span>
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
                   </a>
                 </span>
 
@@ -342,48 +342,51 @@
       
 
       
-        <blockquote>
-<p>注解</p>
-<ol>
-<li>什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术</li>
-<li>Annotation 的作用：</li>
-</ol>
+        <pre><code>接口和内部类为我们提供了一种将接口与现实分离的更加结构化的方法
+</code></pre><a id="more"></a>
+<h1 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h1><ul>
+<li><strong>抽象方法</strong>：用关键字abstract表示。如：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public abstract void play();</span><br></pre></td></tr></table></figure>
 <ul>
-<li>并不是程序本身，可以对程序作出解释。</li>
-<li>可被其他程序读取（可做信息处理）</li>
+<li><strong>抽象类</strong>：是普通类和接口之间的中庸之道。同样用关键字abstract表示。</li>
 </ul>
-</blockquote>
-<a id="more"></a>
-<h1 id="内置注解"><a href="#内置注解" class="headerlink" title="内置注解"></a>内置注解</h1><ol>
-<li>@Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。</li>
-<li>@Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。</li>
-<li>@SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数：<ul>
-<li>deprecation 使用了过时的类或方法的警告</li>
-<li>unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型</li>
-</ul>
-</li>
-</ol>
-<h1 id="元注解（对注解进行进一步解释）"><a href="#元注解（对注解进行进一步解释）" class="headerlink" title="元注解（对注解进行进一步解释）"></a>元注解（对注解进行进一步解释）</h1><ol>
-<li><p>@Target：用于描述注解的使用范围（如包、类、方法等）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">abstract class Instrument&#123;</span><br><span class="line">    public abstract void play();</span><br><span class="line">    public void wind()&#123;</span><br><span class="line">        //this is Common method</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>abstract使用注意</strong>：</p>
+<pre><code>1.包含抽象方法的类必定是抽象类，抽象类不一定包含抽象方法（无意义）
+2.当子类想通过继承的方式来使用父类（假设父类有抽象方法），那么它必须实现父类的抽象方法。如果不实现，那么它也只能是抽象类。并且继承父类的全部抽象方法。
+3.abstract类里允许有普通方法。
+</code></pre><p><strong>作用：</strong></p>
 <ul>
-<li>CONSTRUCTOR:用于描述构造器</li>
-<li>FIELD:用于描述域</li>
-<li>LOCAL_VARIABLE:用于描述局部变量</li>
-<li>METHOD:用于描述方法</li>
-<li>PACKAGE:用于描述包</li>
-<li>PARAMETER:用于描述参数</li>
-<li>TYPE:用于描述类、接口(包括注解类型) 或enum声明</li>
+<li>它们可以使类的抽象性明确起来，并告诉用户和编译器打算怎么使用它们。</li>
+<li>抽象类还是很有用的重构工具，它们使得我们可以很容易的将公共方法沿着继承层次结构向上移动。</li>
 </ul>
-</li>
-<li><p>@Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期</p>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><ul>
+<li>用<strong>interface</strong>这个关键字来产生一个完全抽象的类（没有普通方法）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Instrument&#123;</span><br><span class="line">    public void play();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>SOURCE:在源文件中有效（即源文件保留）</li>
-<li>CLASS:在class文件中有效（即class保留）</li>
-<li>RUNTIME:在运行时有效（即运行时保留）</li>
+<li>被用来建立类与类之间的协议</li>
+<li>允许创建一个能够被向上转型为多种基类的类型，来实现某种类似多种继承变种的特性</li>
+<li>要实现一个接口，需要用<strong>implements</strong>关键字。</li>
 </ul>
-</li>
-</ol>
-<h1 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h1><p>新建一个Annotation 方法，方法头加元注解，具体如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(value = ElementType.METHOD)  <span class="comment">//该注解只可放在方法前面</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)  <span class="comment">//可以通过反射读取到</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Annotation &#123;</span><br><span class="line">	<span class="comment">//定义参数默认值</span></span><br><span class="line">    <span class="function">String <span class="title">studentName</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">id</span><span class="params">()</span> <span class="keyword">default</span> -1</span>;</span><br><span class="line">    String[] schools() <span class="keyword">default</span> &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 引用该注解*/</span></span><br><span class="line"> <span class="meta">@Annotation</span>(age = <span class="number">18</span>,studentName = <span class="string">"二狗"</span>,id = <span class="number">1008</span>,</span><br><span class="line"> schools = &#123;<span class="string">"北京大学"</span>,<span class="string">"清华大学"</span>&#125;)</span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class InstrumentImpl implements Instrument&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void play()&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接口也可以包含域，但是这些域隐式的是static和final的。</li>
+<li>接口中的方法可以不声明访问级别（默认不写/finally），它们自动就是public的。</li>
+</ul>
+<h1 id="Java中的多重继承"><a href="#Java中的多重继承" class="headerlink" title="Java中的多重继承"></a>Java中的多重继承</h1><ul>
+<li>Java是单继承模式，但是我们可以使用implements来实现多重继承（implements多个接口，用逗号相隔）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface c&#123;</span><br><span class="line">    void flight();</span><br><span class="line">&#125;</span><br><span class="line">interface c2&#123;</span><br><span class="line">    void swim();</span><br><span class="line">&#125;</span><br><span class="line">class c3&#123;</span><br><span class="line">    void fly()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">class Hero extends c3 implements c,c2&#123;</span><br><span class="line">    void flight()&#123;&#125;</span><br><span class="line">    void swim()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<pre><code>1.如果一个类同时需要extends和implements，需要将extends放在implements前面。
+2.需要实现多个接口情况下，尽量避免不同接口的方法名相同。
+</code></pre><h1 id="使用接口的核心原因："><a href="#使用接口的核心原因：" class="headerlink" title="使用接口的核心原因："></a>使用接口的核心原因：</h1><ul>
+<li>为了能够向上转型为多个基类型（以及由此带来灵活性）</li>
+<li>防止客户端程序员创建该类的对象，并确保这仅仅是建立一个接口。</li>
+<li>如果确认某个事物应该成为基类，那么首选接口。</li>
+</ul>
 
       
     </div>
@@ -401,8 +404,6 @@
       
         <div class="post-tags">
           
-            <a href="/tags/注解/" rel="tag"># 注解</a>
-          
             <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
@@ -416,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/26/Java基础/java基础--反射/" rel="next" title="java基础--反射">
-                <i class="fa fa-chevron-left"></i> java基础--反射
+              <a href="/2018/10/20/maven/maven-基础知识/" rel="next" title="maven 基础知识">
+                <i class="fa fa-chevron-left"></i> maven 基础知识
               </a>
             
           </div>
@@ -425,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/设计模式/设计模式GOF23-工厂模式/" rel="prev" title="设计模式GOF23--工厂模式">
-                设计模式GOF23--工厂模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +571,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内置注解"><span class="nav-number">1.</span> <span class="nav-text">内置注解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#元注解（对注解进行进一步解释）"><span class="nav-number">2.</span> <span class="nav-text">元注解（对注解进行进一步解释）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义注解"><span class="nav-number">3.</span> <span class="nav-text">自定义注解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象类和抽象方法"><span class="nav-number">1.</span> <span class="nav-text">抽象类和抽象方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口"><span class="nav-number">2.</span> <span class="nav-text">接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java中的多重继承"><span class="nav-number">3.</span> <span class="nav-text">Java中的多重继承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用接口的核心原因："><span class="nav-number">4.</span> <span class="nav-text">使用接口的核心原因：</span></a></li></ol></div>
             
 
           </div>
