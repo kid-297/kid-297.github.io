@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javaee," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="采用递归的形式做Java树状形式解析1234567891011121314151617181920212223242526272829303132333435363738394041private List&amp;lt;GpsStrategyVO&amp;gt; recursionGetGpsStrategy(List&amp;lt;GpsStrategy&amp;gt; gpsStrategies,int parentId)">
+<meta name="description" content="采用递归的形式做Java树状形式解析">
+<meta name="keywords" content="javaee">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kid-297">
+<meta property="og:title" content="采用递归的形式做Java树状形式解析">
 <meta property="og:url" content="http://yoursite.com/2021/04/20/java EE/java 代码做树状形式解析/index.html">
 <meta property="og:site_name" content="kid-297">
-<meta property="og:description" content="采用递归的形式做Java树状形式解析1234567891011121314151617181920212223242526272829303132333435363738394041private List&amp;lt;GpsStrategyVO&amp;gt; recursionGetGpsStrategy(List&amp;lt;GpsStrategy&amp;gt; gpsStrategies,int parentId)">
+<meta property="og:description" content="采用递归的形式做Java树状形式解析">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2021-04-20T10:12:55.459Z">
+<meta property="og:updated_time" content="2021-04-20T10:25:41.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kid-297">
-<meta name="twitter:description" content="采用递归的形式做Java树状形式解析1234567891011121314151617181920212223242526272829303132333435363738394041private List&amp;lt;GpsStrategyVO&amp;gt; recursionGetGpsStrategy(List&amp;lt;GpsStrategy&amp;gt; gpsStrategies,int parentId)">
+<meta name="twitter:title" content="采用递归的形式做Java树状形式解析">
+<meta name="twitter:description" content="采用递归的形式做Java树状形式解析">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | kid-297</title>
+  <title>采用递归的形式做Java树状形式解析 | kid-297</title>
   
 
 
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">采用递归的形式做Java树状形式解析</h1>
         
 
         <div class="post-meta">
@@ -281,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-20T18:12:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-20T14:56:35+08:00">
                 2021-04-20
               </time>
             
@@ -291,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JAVA-EE/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA EE</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,7 +342,8 @@
       
 
       
-        <h1 id="采用递归的形式做Java树状形式解析"><a href="#采用递归的形式做Java树状形式解析" class="headerlink" title="采用递归的形式做Java树状形式解析"></a>采用递归的形式做Java树状形式解析</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> List&lt;GpsStrategyVO&gt; <span class="title">recursionGetGpsStrategy</span><span class="params">(List&lt;GpsStrategy&gt; gpsStrategies,<span class="keyword">int</span> parentId)</span></span>&#123;</span><br><span class="line">       List&lt;GpsStrategyVO&gt; next = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="comment">//1.获取所有子集合</span></span><br><span class="line">       gpsStrategies.stream().forEach(gpsStrategyVO -&gt;&#123;</span><br><span class="line">           <span class="keyword">if</span>(parentId == gpsStrategyVO.getParentId())&#123;</span><br><span class="line">               GpsStrategyVO strategyVO = <span class="keyword">new</span> GpsStrategyVO();</span><br><span class="line">               BeanUtils.copyProperties(gpsStrategyVO,strategyVO);</span><br><span class="line">               next.add(strategyVO);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2.遍历子集合，给当前每一条数据插入子集合（递归）</span></span><br><span class="line">       <span class="keyword">if</span> (!ObjectIsNullUtil.isNullOrEmpty(next))&#123;</span><br><span class="line">           next.stream().forEach(gpsStrategyVO -&gt; &#123;</span><br><span class="line">               List&lt;GpsStrategyVO&gt; gpsStrategyVOS = recursionGetGpsStrategy(gpsStrategies, gpsStrategyVO.getStrategyId());</span><br><span class="line">               <span class="keyword">if</span> (!ObjectIsNullUtil.isNullOrEmpty(gpsStrategyVOS))&#123;</span><br><span class="line">                   gpsStrategyVO.setNext(gpsStrategyVOS);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//2.1 获取策略详情列表</span></span><br><span class="line">               <span class="keyword">if</span> (<span class="keyword">null</span> == gpsStrategyDetailVOList)&#123;</span><br><span class="line">                   getGpsStrategyDetailVOs();</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//2.2 获取当前策略id对应的策略详情</span></span><br><span class="line">               gpsStrategyVO.setGpsStrategyDetails(gpsStrategyDetailService.selectStrategyDetailsByStrategyIdLogic(gpsStrategyDetailVOList,gpsStrategyVO.getStrategyId()));</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> next;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> List&lt;GpsStrategyDetailVO&gt; gpsStrategyDetailVOList = <span class="keyword">null</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始化策略详情</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;GpsStrategyDetailVO&gt; <span class="title">getGpsStrategyDetailVOs</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(gpsStrategyDetailVOList == <span class="keyword">null</span>)&#123;</span><br><span class="line">           gpsStrategyDetailVOList = gpsStrategyDetailService.selectAll();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> gpsStrategyDetailVOList;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="采用递归的形式做Java树状形式解析"><a href="#采用递归的形式做Java树状形式解析" class="headerlink" title="采用递归的形式做Java树状形式解析"></a>采用递归的形式做Java树状形式解析</h1><a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> List&lt;GpsStrategyVO&gt; <span class="title">recursionGetGpsStrategy</span><span class="params">(List&lt;GpsStrategy&gt; gpsStrategies,<span class="keyword">int</span> parentId)</span></span>&#123;</span><br><span class="line">       List&lt;GpsStrategyVO&gt; next = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="comment">//1.获取所有子集合</span></span><br><span class="line">       gpsStrategies.stream().forEach(gpsStrategyVO -&gt;&#123;</span><br><span class="line">           <span class="keyword">if</span>(parentId == gpsStrategyVO.getParentId())&#123;</span><br><span class="line">               GpsStrategyVO strategyVO = <span class="keyword">new</span> GpsStrategyVO();</span><br><span class="line">               BeanUtils.copyProperties(gpsStrategyVO,strategyVO);</span><br><span class="line">               next.add(strategyVO);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//2.遍历子集合，给当前每一条数据插入子集合（递归）</span></span><br><span class="line">       <span class="keyword">if</span> (!ObjectIsNullUtil.isNullOrEmpty(next))&#123;</span><br><span class="line">           next.stream().forEach(gpsStrategyVO -&gt; &#123;</span><br><span class="line">               List&lt;GpsStrategyVO&gt; gpsStrategyVOS = recursionGetGpsStrategy(gpsStrategies, gpsStrategyVO.getStrategyId());</span><br><span class="line">               <span class="keyword">if</span> (!ObjectIsNullUtil.isNullOrEmpty(gpsStrategyVOS))&#123;</span><br><span class="line">                   gpsStrategyVO.setNext(gpsStrategyVOS);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//2.1 获取策略详情列表</span></span><br><span class="line">               <span class="keyword">if</span> (<span class="keyword">null</span> == gpsStrategyDetailVOList)&#123;</span><br><span class="line">                   getGpsStrategyDetailVOs();</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="comment">//2.2 获取当前策略id对应的策略详情</span></span><br><span class="line">               gpsStrategyVO.setGpsStrategyDetails(gpsStrategyDetailService.selectStrategyDetailsByStrategyIdLogic(gpsStrategyDetailVOList,gpsStrategyVO.getStrategyId()));</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> next;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> List&lt;GpsStrategyDetailVO&gt; gpsStrategyDetailVOList = <span class="keyword">null</span>;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 初始化策略详情</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> List&lt;GpsStrategyDetailVO&gt; <span class="title">getGpsStrategyDetailVOs</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(gpsStrategyDetailVOList == <span class="keyword">null</span>)&#123;</span><br><span class="line">           gpsStrategyDetailVOList = gpsStrategyDetailService.selectAll();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> gpsStrategyDetailVOList;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><ul>
 <li>该场景是做一个树状结构的返回。其中，最高级别的parentId设置为0.则调用方法只需传入整个列表和0即可：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.查询全部</span></span><br><span class="line">List&lt;GpsStrategy&gt; gpsStrategies = gpsStrategyService.selectAll();</span><br><span class="line"><span class="comment">//2.递归</span></span><br><span class="line">List&lt;GpsStrategyVO&gt; strategies = recursionGetGpsStrategy(gpsStrategies, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
 </li>
@@ -342,6 +366,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javaee/" rel="tag"># javaee</a>
+          
+        </div>
+      
 
       
       
@@ -351,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/31/读书笔记/java编程思想/Java编程思想读书笔记-第九章-接口/" rel="next" title="Java编程思想读书笔记--第九章 接口">
-                <i class="fa fa-chevron-left"></i> Java编程思想读书笔记--第九章 接口
+              <a href="/2021/04/20/java EE/spring/springBoot 两种格式配置文件/" rel="next" title="springBoot 两种配置文件">
+                <i class="fa fa-chevron-left"></i> springBoot 两种配置文件
               </a>
             
           </div>
@@ -361,8 +391,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/04/20/java EE/spring/springBoot 使用@Value获取配置文件中参数/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/04/20/netty/【尚硅谷一】Netty 基础/" rel="prev" title="Netty 基础">
+                Netty 基础 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -455,7 +485,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -466,7 +496,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
