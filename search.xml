@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>%2F2021%2F04%2F20%2Fnetty%2F%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B8%80%E3%80%91Netty%20%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[原生NIO存在的问题 类库繁杂 需要多线程知识 工作量增加，难度增加 会出现断连、重连、网络闪退、半包读写、失败缓冲、网络拥塞、和异常流的处理 NIO本身的bug Epoll bug Netty 概念 异步，基于事件驱动的网络应用框架，可快速开发高性能，高可靠性的网络应用 线程模型的基本介绍 传统阻塞I/O Reactor模式（反应式） 单Reactor,单线程 单Reactor，多线程 主从Reactor，多线程 netty 基于主从Reactor 多线程模型 传统阻塞型I/O模型 模型特点 采用阻塞IO模式获取输入的数据 每个连接都选用独立的线程完成数据输入 问题 并发数很大的情况下不适用 会阻塞]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2021%2F04%2F20%2Fjava%20EE%2Fspring%2FspringBoot%20%E4%B8%A4%E7%A7%8D%E6%A0%BC%E5%BC%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%2F</url>
+    <content type="text"><![CDATA[springBoot 两种配置文件springBoot 有两种配置文件格式 .properties 默认格式（默认读取application.properties） 123server.port=8089server.context-path=/server.session.timeout=1200 .yml (yml格式采用缩进方式，在冒号后必须有空格，否则读取不到数据) 12345server: port: 8090 context-path: / session: timout: 1200 日常文件配置日常开发、部署、测试时候，我们经常需要替换配置文件，冗长复杂而且容易出错。现springBoot提供不同情况下配置文件切换。(此处拿yml格式做演示) 首先，我们知道springBoot默认读取的文件为application.yml,那么我们就在该文件配置切换，以下为具体： 123spring: profiles: active: prod 其次，prod 是一个以application为开头的配置文件，名称：application-prod.yml,因主配置文件里配置的为prod,则在启动项目时，默认加载该文件。 当然，我们也可以运用以上命名规则，创建多个配置文件，随意切换。 YAML和YML 维基百科关于YML的文章说“.yml”是“ YAML文件格式的文件扩展名”（强调增加了）。其YAML文章列出了两个扩展名，没有表示偏好。 YAML是一种直观的能够被电脑识别的的数据序列化格式，容易被人类阅读，并且容易和脚本语言交互。YAML类似于XML，但是语法比XML简单得多，对于转化成数组或可以hash的数据时是很简单有效的。 题外话：在springBoot项目下，点击右键新建.yml文件，即会自动转为spring模式。（之前搭建遇到的坑~~）]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2021%2F04%2F20%2Fjava%20EE%2Fspring%2FspringBoot%20%E4%BD%BF%E7%94%A8%40Value%E8%8E%B7%E5%8F%96%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%AD%E5%8F%82%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[非静态变量赋值 直接使用@Value(&quot;${spring.redis.host}&quot;)配置，spring.redis.host为配置文件中参数命名，注意不要忘记加${}。 12345678910111213@RestController@RequestMapping("/jedis")public class JedisDemo1 &#123; @Value("$&#123;spring.redis.host&#125;") private String host; @RequestMapping(value ="/hellJedis") public String hellJedis() &#123; System.out.println("host:" + host ); return "hello host !!"; &#125;&#125; 静态变量赋值 使用@Component注解 在set方法上使用@Value12345678910111213@Componentpublic class Test &#123; private static Integer test; public static Integer getTest() &#123; return test; &#125; @Value("$&#123;server.port&#125;") public void setTest(Integer test) &#123; this.test = test; &#125;&#125; 参考文档：static静态变量使用@Value注入方式 题外话：初次使用，一定得考虑时静态变量和非静态变量。又一坑~~ 引入jar &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt; &lt;version&gt;5.1.3.RELEASE&lt;/version&gt; &lt;/dependency&gt;]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F2021%2F04%2F20%2Fjava%20EE%2Fjava%20%E4%BB%A3%E7%A0%81%E5%81%9A%E6%A0%91%E7%8A%B6%E5%BD%A2%E5%BC%8F%E8%A7%A3%E6%9E%90%2F</url>
+    <content type="text"><![CDATA[采用递归的形式做Java树状形式解析1234567891011121314151617181920212223242526272829303132333435363738394041private List&lt;GpsStrategyVO&gt; recursionGetGpsStrategy(List&lt;GpsStrategy&gt; gpsStrategies,int parentId)&#123; List&lt;GpsStrategyVO&gt; next = new ArrayList&lt;&gt;(); //1.获取所有子集合 gpsStrategies.stream().forEach(gpsStrategyVO -&gt;&#123; if(parentId == gpsStrategyVO.getParentId())&#123; GpsStrategyVO strategyVO = new GpsStrategyVO(); BeanUtils.copyProperties(gpsStrategyVO,strategyVO); next.add(strategyVO); &#125; &#125;); //2.遍历子集合，给当前每一条数据插入子集合（递归） if (!ObjectIsNullUtil.isNullOrEmpty(next))&#123; next.stream().forEach(gpsStrategyVO -&gt; &#123; List&lt;GpsStrategyVO&gt; gpsStrategyVOS = recursionGetGpsStrategy(gpsStrategies, gpsStrategyVO.getStrategyId()); if (!ObjectIsNullUtil.isNullOrEmpty(gpsStrategyVOS))&#123; gpsStrategyVO.setNext(gpsStrategyVOS); &#125; //2.1 获取策略详情列表 if (null == gpsStrategyDetailVOList)&#123; getGpsStrategyDetailVOs(); &#125; //2.2 获取当前策略id对应的策略详情 gpsStrategyVO.setGpsStrategyDetails(gpsStrategyDetailService.selectStrategyDetailsByStrategyIdLogic(gpsStrategyDetailVOList,gpsStrategyVO.getStrategyId())); &#125;); &#125; return next; &#125; private static List&lt;GpsStrategyDetailVO&gt; gpsStrategyDetailVOList = null; /** * 初始化策略详情 * @return */ public List&lt;GpsStrategyDetailVO&gt; getGpsStrategyDetailVOs()&#123; if(gpsStrategyDetailVOList == null)&#123; gpsStrategyDetailVOList = gpsStrategyDetailService.selectAll(); &#125; return gpsStrategyDetailVOList; &#125; 场景 该场景是做一个树状结构的返回。其中，最高级别的parentId设置为0.则调用方法只需传入整个列表和0即可：1234//1.查询全部List&lt;GpsStrategy&gt; gpsStrategies = gpsStrategyService.selectAll();//2.递归List&lt;GpsStrategyVO&gt; strategies = recursionGetGpsStrategy(gpsStrategies, 0); 递归解释 先获取当前条件下所有子查询]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Java编程思想读书笔记--第九章 接口]]></title>
     <url>%2F2018%2F10%2F31%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%2Fjava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%2FJava%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E6%8E%A5%E5%8F%A3%2F</url>
     <content type="text"><![CDATA[接口和内部类为我们提供了一种将接口与现实分离的更加结构化的方法 抽象类和抽象方法 抽象方法：用关键字abstract表示。如： 1public abstract void play(); 抽象类：是普通类和接口之间的中庸之道。同样用关键字abstract表示。 123456abstract class Instrument&#123; public abstract void play(); public void wind()&#123; //this is Common method &#125;&#125; abstract使用注意： 1.包含抽象方法的类必定是抽象类，抽象类不一定包含抽象方法（无意义） 2.当子类想通过继承的方式来使用父类（假设父类有抽象方法），那么它必须实现父类的抽象方法。如果不实现，那么它也只能是抽象类。并且继承父类的全部抽象方法。 3.abstract类里允许有普通方法。 作用： 它们可以使类的抽象性明确起来，并告诉用户和编译器打算怎么使用它们。 抽象类还是很有用的重构工具，它们使得我们可以很容易的将公共方法沿着继承层次结构向上移动。 接口 用interface这个关键字来产生一个完全抽象的类（没有普通方法） 123public interface Instrument&#123; public void play();&#125; 被用来建立类与类之间的协议 允许创建一个能够被向上转型为多种基类的类型，来实现某种类似多种继承变种的特性 要实现一个接口，需要用implements关键字。 123456public class InstrumentImpl implements Instrument&#123; @Override public void play()&#123; &#125;&#125; 接口也可以包含域，但是这些域隐式的是static和final的。 接口中的方法可以不声明访问级别（默认不写/finally），它们自动就是public的。 Java中的多重继承 Java是单继承模式，但是我们可以使用implements来实现多重继承（implements多个接口，用逗号相隔） 12345678910111213interface c&#123; void flight();&#125;interface c2&#123; void swim();&#125;class c3&#123; void fly()&#123;&#125;&#125;class Hero extends c3 implements c,c2&#123; void flight()&#123;&#125; void swim()&#123;&#125;&#125; 注意： 1.如果一个类同时需要extends和implements，需要将extends放在implements前面。 2.需要实现多个接口情况下，尽量避免不同接口的方法名相同。 使用接口的核心原因： 为了能够向上转型为多个基类型（以及由此带来灵活性） 防止客户端程序员创建该类的对象，并确保这仅仅是建立一个接口。 如果确认某个事物应该成为基类，那么首选接口。]]></content>
@@ -317,18 +337,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[java基础--注解]]></title>
-    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>注解</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[java基础--反射]]></title>
     <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E5%8F%8D%E5%B0%84%2F</url>
     <content type="text"><![CDATA[什么是反射：java通常是先有类再有对象，有对象我就可以调用方法或者属性。反射其实是通过Class对象来调用类里面的方法。通过反射可以调用私有方法和私有属性。大部分框架都是运用反射原理。 反射的作用：动态的加载类和类中的信息 反射小例子：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384@SuppressWarnings("all")public class ReflexTestDemo &#123; public static void main(String[] args)&#123; String path = "com.tfs.test.User"; User user = new User(); try &#123; //一、获取对象的方式 Class&lt;User&gt; cl1 = (Class&lt;User&gt;) Class.forName(path); Class cl2 = User.class; Class cl3 = user.getClass(); System.out.println(cl1.hashCode() == cl2.hashCode()); //true System.out.println(cl1.hashCode() == cl3.hashCode()); //true //二、获取并使用对象内置信息 //1.获取名称 System.out.println(cl1.getName()); //com.tfs.test.User System.out.println(cl1.getSimpleName()); //User //2.获取并使用属性 Field[] fields = cl1.getFields(); //只能获取public的 Field[] fields1 = cl1.getDeclaredFields(); //获取全部的 Field field = cl1.getDeclaredField("name"); //根据名字获取 User u2 = cl1.newInstance(); //利用反射获取默认构造方法 field.setAccessible(true); //设置后可以不用进行安全检测，提高性能 field.set(u2,"kid"); //给name属性赋值kid System.out.println(field.get(u2)); //输出：kid //3.获取并使用普通方法 Method method = cl1.getDeclaredMethod("setName", String.class); //参数：方法名，方法参数 User u3 = cl1.newInstance(); method.invoke(u3,"kid"); //等同于 u3.setName("kid"); 方法 System.out.println(u3.getName()); //输出：kid //4.获取并使用构造方法 Constructor constructor1 = cl1.getDeclaredConstructor(); //获取无参构造方法 Constructor constructor2 = cl1.getDeclaredConstructor(int.class,String.class); //获取有参构造方法 User u4 = (User) constructor2.newInstance(1008,"kid"); //调用该方法并传参 System.out.println(u4.getName()); //输出：null 所以该方法只是调用了有参的构造函数，并未真正的传参 &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125;&#125;/** * @Description:被调用的User类 * @Author:kid * @Date: 2018/3/26 16:17 * @ISDELETE: NO */public class User &#123; public int id; String name; public int getId() &#123; return id; &#125; public void setId(int id) &#123; this.id = id; &#125; public String getName() &#123; return name; &#125; public void setName(String name) &#123; this.name = name; &#125; public User()&#123; &#125; public User(int id,String name)&#123; &#125; 反射性能反射的会影响运行的速度，但是在开发中，有一些地方还是会需要反射。那么如何解决这个问题呢？经测验：在同时循环执行一个方法的时候，反射会比普通的方法慢很多。如将setAccessible设置为true，减少安全检测，将提升4倍的效率。]]></content>
@@ -338,6 +346,18 @@
       <tags>
         <tag>java</tag>
         <tag>反射</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java基础--注解]]></title>
+    <url>%2F2018%2F03%2F26%2FJava%E5%9F%BA%E7%A1%80%2Fjava%E5%9F%BA%E7%A1%80--%E6%B3%A8%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[注解 什么叫做注解？注解-&gt;Annotation，JDK5.0引入技术 Annotation 的作用： 并不是程序本身，可以对程序作出解释。 可被其他程序读取（可做信息处理） 内置注解 @Override : 定义在java.lang.Override中，此注释只适用于修辞方法，表示一个方法声明打算重写父类中另一个方法声明。 @Deprecated：定义在java.lang.Deprecated中，此注释用于修辞方法、熟悉、类。表示不鼓励程序员使用这样的元素。 @SuppressWarnings：用来抑制编译时的警告信息。其中包含的参数： deprecation 使用了过时的类或方法的警告 unchecked 执行了未检查的转化时的警告，如使用集合时，未指定泛型 元注解（对注解进行进一步解释） @Target：用于描述注解的使用范围（如包、类、方法等） CONSTRUCTOR:用于描述构造器 FIELD:用于描述域 LOCAL_VARIABLE:用于描述局部变量 METHOD:用于描述方法 PACKAGE:用于描述包 PARAMETER:用于描述参数 TYPE:用于描述类、接口(包括注解类型) 或enum声明 @Retention：表示需要在什么级别保存该注释信息，用于描述注解的生命周期 SOURCE:在源文件中有效（即源文件保留） CLASS:在class文件中有效（即class保留） RUNTIME:在运行时有效（即运行时保留） 自定义注解新建一个Annotation 方法，方法头加元注解，具体如下：12345678910111213141516@Target(value = ElementType.METHOD) //该注解只可放在方法前面@Retention(RetentionPolicy.RUNTIME) //可以通过反射读取到public @interface Annotation &#123; //定义参数默认值 String studentName() default ""; int age() default 0; int id() default -1; String[] schools() default &#123;&#125;;&#125;/* 引用该注解*/ @Annotation(age = 18,studentName = "二狗",id = 1008, schools = &#123;"北京大学","清华大学"&#125;) public void test()&#123; &#125;]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>注解</tag>
       </tags>
   </entry>
   <entry>
