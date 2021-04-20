@@ -12,17 +12,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Netty 基础]]></title>
-    <url>%2F2021%2F04%2F20%2Fnetty%2F%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B8%80%E3%80%91Netty%20%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[原生NIO存在的问题 类库繁杂 需要多线程知识 工作量增加，难度增加 会出现断连、重连、网络闪退、半包读写、失败缓冲、网络拥塞、和异常流的处理 NIO本身的bug Epoll bug Netty 概念 异步，基于事件驱动的网络应用框架，可快速开发高性能，高可靠性的网络应用 线程模型的基本介绍 传统阻塞I/O Reactor模式（反应式） 单Reactor,单线程 单Reactor，多线程 主从Reactor，多线程 netty 基于主从Reactor 多线程模型 传统阻塞型I/O模型 模型特点 采用阻塞IO模式获取输入的数据 每个连接都选用独立的线程完成数据输入 问题 并发数很大的情况下不适用 会阻塞]]></content>
-      <categories>
-        <category>Netty</category>
-      </categories>
-      <tags>
-        <tag>netty</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[采用递归的形式做Java树状形式解析]]></title>
     <url>%2F2021%2F04%2F20%2Fjava%20EE%2Fjava%20%E4%BB%A3%E7%A0%81%E5%81%9A%E6%A0%91%E7%8A%B6%E5%BD%A2%E5%BC%8F%E8%A7%A3%E6%9E%90%2F</url>
     <content type="text"><![CDATA[采用递归的形式做Java树状形式解析 1234567891011121314151617181920212223242526272829303132333435363738394041private List&lt;GpsStrategyVO&gt; recursionGetGpsStrategy(List&lt;GpsStrategy&gt; gpsStrategies,int parentId)&#123; List&lt;GpsStrategyVO&gt; next = new ArrayList&lt;&gt;(); //1.获取所有子集合 gpsStrategies.stream().forEach(gpsStrategyVO -&gt;&#123; if(parentId == gpsStrategyVO.getParentId())&#123; GpsStrategyVO strategyVO = new GpsStrategyVO(); BeanUtils.copyProperties(gpsStrategyVO,strategyVO); next.add(strategyVO); &#125; &#125;); //2.遍历子集合，给当前每一条数据插入子集合（递归） if (!ObjectIsNullUtil.isNullOrEmpty(next))&#123; next.stream().forEach(gpsStrategyVO -&gt; &#123; List&lt;GpsStrategyVO&gt; gpsStrategyVOS = recursionGetGpsStrategy(gpsStrategies, gpsStrategyVO.getStrategyId()); if (!ObjectIsNullUtil.isNullOrEmpty(gpsStrategyVOS))&#123; gpsStrategyVO.setNext(gpsStrategyVOS); &#125; //2.1 获取策略详情列表 if (null == gpsStrategyDetailVOList)&#123; getGpsStrategyDetailVOs(); &#125; //2.2 获取当前策略id对应的策略详情 gpsStrategyVO.setGpsStrategyDetails(gpsStrategyDetailService.selectStrategyDetailsByStrategyIdLogic(gpsStrategyDetailVOList,gpsStrategyVO.getStrategyId())); &#125;); &#125; return next; &#125; private static List&lt;GpsStrategyDetailVO&gt; gpsStrategyDetailVOList = null; /** * 初始化策略详情 * @return */ public List&lt;GpsStrategyDetailVO&gt; getGpsStrategyDetailVOs()&#123; if(gpsStrategyDetailVOList == null)&#123; gpsStrategyDetailVOList = gpsStrategyDetailService.selectAll(); &#125; return gpsStrategyDetailVOList; &#125; 场景 该场景是做一个树状结构的返回。其中，最高级别的parentId设置为0.则调用方法只需传入整个列表和0即可：1234//1.查询全部List&lt;GpsStrategy&gt; gpsStrategies = gpsStrategyService.selectAll();//2.递归List&lt;GpsStrategyVO&gt; strategies = recursionGetGpsStrategy(gpsStrategies, 0); 递归解释 先获取当前条件下所有子查询]]></content>
@@ -31,6 +20,17 @@
       </categories>
       <tags>
         <tag>javaee</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Netty 基础]]></title>
+    <url>%2F2021%2F04%2F20%2Fnetty%2F%E3%80%90%E5%B0%9A%E7%A1%85%E8%B0%B7%E4%B8%80%E3%80%91Netty%20%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[原生NIO存在的问题 类库繁杂 需要多线程知识 工作量增加，难度增加 会出现断连、重连、网络闪退、半包读写、失败缓冲、网络拥塞、和异常流的处理 NIO本身的bug Epoll bug Netty 概念 异步，基于事件驱动的网络应用框架，可快速开发高性能，高可靠性的网络应用 线程模型的基本介绍 传统阻塞I/O Reactor模式（反应式） 单Reactor,单线程 单Reactor，多线程 主从Reactor，多线程 netty 基于主从Reactor 多线程模型 传统阻塞型I/O模型 模型特点 采用阻塞IO模式获取输入的数据 每个连接都选用独立的线程完成数据输入 问题 并发数很大的情况下不适用 会阻塞]]></content>
+      <categories>
+        <category>Netty</category>
+      </categories>
+      <tags>
+        <tag>netty</tag>
       </tags>
   </entry>
   <entry>
